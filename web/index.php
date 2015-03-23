@@ -2,7 +2,7 @@
 
 require(__DIR__ . '/../vendor/autoload.php');
 
-Dotenv::load(__DIR__);
+Dotenv::load(dirname(__DIR__));
 Dotenv::required(['DB_HOST', 'DB_NAME', 'DB_USER', 'DB_PASS','YII_DEBUG']);
 
 defined('YII_DEBUG') or define('YII_DEBUG', getenv('YII_DEBUG'));

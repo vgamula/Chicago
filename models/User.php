@@ -133,4 +133,13 @@ class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
     {
         return Yii::$app->security->validatePassword($password, $this->passwordHash);
     }
+
+    /**
+     * @param $email
+     * @return null|static
+     */
+    public static function findByEmail($email)
+    {
+        return self::findOne(['email']);
+    }
 }
