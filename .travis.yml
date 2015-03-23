@@ -23,7 +23,7 @@ cache:
     - vendor
     - $HOME/.composer/cache
 
-before script:
+before_script:
   - mysql -e 'create database chicago;'
   - cp .env.travis .env
 
