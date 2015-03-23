@@ -4,6 +4,7 @@ $params = require(__DIR__ . '/params.php');
 
 $config = [
     'id' => 'basic',
+    'language' => 'uk-UA',
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
     'components' => [
@@ -28,6 +29,11 @@ $config = [
             // for the mailer to send real emails.
             'useFileTransport' => true,
         ],
+        'i18n' => [
+            'translations' => [
+                '*' => ['class' => 'yii\i18n\PhpMessageSource'],
+            ],
+        ],
         'log' => [
             'traceLevel' => YII_DEBUG ? 3 : 0,
             'targets' => [
@@ -36,6 +42,10 @@ $config = [
                     'levels' => ['error', 'warning'],
                 ],
             ],
+        ],
+        'urlManager' => [
+            'enablePrettyUrl' => true,
+            'showScriptName' => false,
         ],
         'db' => require(__DIR__ . '/db.php'),
     ],
