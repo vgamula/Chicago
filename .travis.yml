@@ -25,6 +25,10 @@ cache:
     - vendor
     - $HOME/.composer/cache
 
+before script:
+  - mysql -e 'create database chicago;'
+  - cp .env.travis .env
+
 install:
   - travis_retry composer self-update && composer --version
   - travis_retry composer global require "fxp/composer-asset-plugin:1.0.0"
