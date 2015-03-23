@@ -1,4 +1,4 @@
-Yii 2 Basic Application Template
+Yii 2 Basic Application Template  [![Build Status](https://magnum.travis-ci.com/vgamula/Chicago.svg?token=5ryyq4PF7yN6gNereuTn&branch=master)](https://magnum.travis-ci.com/vgamula/Chicago)
 ================================
 
 DIRECTORY STRUCTURE
