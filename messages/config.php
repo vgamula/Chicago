@@ -39,6 +39,9 @@ return [
         '.hgignore',
         '.hgkeep',
         '/messages',
+        '/vendor',
+        '/runtime',
+        '/web',
     ],
 
     // 'php' output format is for saving messages to php files.

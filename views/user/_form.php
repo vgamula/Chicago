@@ -12,7 +12,7 @@ use yii\widgets\ActiveForm;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'email')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'email')->textInput(['maxlength' => true, 'type' => 'email']) ?>
 
     <?= $form->field($model, 'firstName')->textInput(['maxlength' => true]) ?>
 
@@ -20,23 +20,11 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'lastName')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'status')->textInput() ?>
+    <?= $form->field($model, 'status')->dropDownList([/*TODO*/]) ?>
 
-    <?= $form->field($model, 'role')->textInput() ?>
+    <?= $form->field($model, 'role')->dropDownList([/*TODO*/]) ?>
 
-    <?= $form->field($model, 'passwordHash')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'passwordResetToken')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'passwordResetExpire')->textInput() ?>
-
-    <?= $form->field($model, 'createdAt')->textInput() ?>
-
-    <?= $form->field($model, 'updatedAt')->textInput() ?>
-
-    <?= $form->field($model, 'emailConfirmToken')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'emailConfirmed')->textInput() ?>
+    <?= $form->field($model, 'password')->passwordInput(['maxlength' => true]) ?>
 
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? Yii::t('user', 'Create') : Yii::t('user', 'Update'), ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>

@@ -2,7 +2,10 @@
 
 namespace app\models;
 
+use nullref\useful\PasswordTrait;
 use Yii;
+use yii\db\ActiveRecord;
+use yii\web\IdentityInterface;
 
 /**
  * This is the model class for table "users".
@@ -22,9 +25,10 @@ use Yii;
  * @property string $emailConfirmToken
  * @property integer $emailConfirmed
  */
-class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
+class User extends ActiveRecord implements IdentityInterface
 {
 
+    use PasswordTrait;
     /**
      * Roles
      */
@@ -65,19 +69,20 @@ class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
     {
         return [
             'id' => 'ID',
-            'email' => 'Email',
-            'firstName' => 'First Name',
-            'middleName' => 'Middle Name',
-            'lastName' => 'Last Name',
-            'status' => 'Status',
-            'role' => 'Role',
-            'passwordHash' => 'Password Hash',
-            'passwordResetToken' => 'Password Reset Token',
-            'passwordResetExpire' => 'Password Reset Expire',
-            'createdAt' => 'Created At',
-            'updatedAt' => 'Updated At',
-            'emailConfirmToken' => 'Email Confirm Token',
-            'emailConfirmed' => 'Email Confirmed',
+            'email' => Yii::t('user','Email'),
+            'firstName' => Yii::t('user','First Name'),
+            'middleName' => Yii::t('user','Middle Name'),
+            'lastName' => Yii::t('user','Last Name'),
+            'status' => Yii::t('user','Status'),
+            'role' => Yii::t('user','Role'),
+            'passwordHash' => Yii::t('user','Password Hash'),
+            'passwordResetToken' => Yii::t('user','Password Reset Token'),
+            'password' => Yii::t('user','Password'),
+            'passwordResetExpire' => Yii::t('user','Password Reset Expire'),
+            'createdAt' => Yii::t('user','Created At'),
+            'updatedAt' => Yii::t('user','Updated At'),
+            'emailConfirmToken' => Yii::t('user','Email Confirm Token'),
+            'emailConfirmed' => Yii::t('user','Email Confirmed'),
         ];
     }
 
