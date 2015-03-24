@@ -18,10 +18,10 @@ if (method_exists($I, 'wait')) {
 }
 $I->expectTo('see validations errors');
 $I->see('Contact', 'h1');
-$I->see('Необхідно заповнити "Name".');
-$I->see('Необхідно заповнити "Email".');
-$I->see('Необхідно заповнити "Subject".');
-$I->see('Необхідно заповнити "Body".');
+$I->see('Необхідно заповнити "name".');
+$I->see('Необхідно заповнити "email".');
+$I->see('Необхідно заповнити "subject".');
+$I->see('Необхідно заповнити "body".');
 $I->see('Невірний код перевірки.');
 
 $I->amGoingTo('submit contact form with not correct email');

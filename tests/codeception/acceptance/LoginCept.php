@@ -17,8 +17,8 @@ if (method_exists($I, 'wait')) {
     $I->wait(3); // only for selenium
 }
 $I->expectTo('see validations errors');
-$I->see('Необхідно заповнити "Username".');
-$I->see('Необхідно заповнити "Password".');
+$I->see('Необхідно заповнити "username".');
+$I->see('Необхідно заповнити "password".');
 
 $I->amGoingTo('try to login with wrong credentials');
 $loginPage->login('admin', 'wrong');
