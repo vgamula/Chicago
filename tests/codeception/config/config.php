@@ -13,7 +13,10 @@ return [
     ],
     'components' => [
         'db' => [
-            'dsn' => 'mysql:host=localhost;dbname=yii2_basic_tests',
+            'dsn' => 'mysql:host='.getenv('DB_HOST').';dbname=' . getenv('DB_NAME'),
+            'username' => getenv('DB_USER'),
+            'password' => getenv('DB_PASS'),
+            'charset' => 'utf8',
         ],
         'mailer' => [
             'useFileTransport' => true,
