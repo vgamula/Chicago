@@ -6,10 +6,7 @@ php:
 #  - hhvm
 #  - hhvm-nightly
 env:
-  - TRAVIS=true
-  - DB_HOST=localhost
-  - DB_NAME=chicago
-  - DB_USER=root
+  - TRAVIS=true DB_HOST=localhost DB_NAME=chicago DB_USER=root
 
 # run build against hhvm but allow them to fail
 # http://docs.travis-ci.com/user/build-configuration/#Rows-That-are-Allowed-To-Fail
