@@ -17,16 +17,19 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
+    'Add News' => '',
     'Are you sure you want to delete this item?' => '',
     'Create Project' => '',
     'Created At' => '',
     'Delete' => '',
     'Description' => '',
     'ID' => '',
+    'Is Published' => '',
     'Projects' => '',
-    'Status' => '',
     'Title' => '',
     'Update' => '',
     'Update {modelClass}: ' => '',
     'Updated At' => '',
+    'View Project' => '',
+    'View on site' => '',
 ];

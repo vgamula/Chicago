@@ -51,8 +51,14 @@ class SiteController extends Controller
 
     public function actionIndex()
     {
-        $dataProvider = new ActiveDataProvider(['query' => Project::find()->popular()]);
+        $dataProvider = new ActiveDataProvider(['query' => Project::find()->popular()->published()]);
         return $this->render('index', ['dataProvider' => $dataProvider]);
+    }
+
+    public function actionView($slug)
+    {
+        $model = Project::find()->bySlug($slug)->published()->one();
+        return $this->render('view', ['model' => $model]);
     }
 
     public function actionLogin()

@@ -15,8 +15,8 @@ $config = [
             'disabledCommands' => ['netmount'],
             'roots' => [
                 [
-                    'baseUrl'=>'@web',
-                    'basePath'=>'@webroot',
+                    'baseUrl' => '@web',
+                    'basePath' => '@webroot',
                     'path' => '/files/upload',
                     'name' => ['category' => 'app', 'message' => 'Files'], // Yii::t($category, $message)
                     'access' => ['read' => '*'/*, 'write' => 'UserFilesAccess'*/] // * - для всех, иначе проверка доступа в даааном примере все могут видет а редактировать могут пользователи только с правами UserFilesAccess
@@ -59,6 +59,12 @@ $config = [
         'urlManager' => [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
+            'rules' => [
+                '<slug:[-a-zA-Z]+>' => 'site/view',
+            ],
+        ],
+        'formatter' => [
+            'class' => 'app\components\AppFormatter',
         ],
         'db' => require(__DIR__ . '/db.php'),
     ],

@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use yii\grid\GridView;
+use app\components\Helper;
 
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\UserSearch */
@@ -13,7 +14,6 @@ $this->params['breadcrumbs'][] = $this->title;
 <div class="user-index">
 
     <h1><?= Html::encode($this->title) ?></h1>
-    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
         <?= Html::a(Yii::t('user', 'Create User'), ['create'], ['class' => 'btn btn-success']) ?>
@@ -24,22 +24,11 @@ $this->params['breadcrumbs'][] = $this->title;
         'filterModel' => $searchModel,
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
-
-            'id',
             'email:email',
             'firstName',
-            'middleName',
             'lastName',
-            // 'status',
-            // 'role',
-            // 'passwordHash',
-            // 'passwordResetToken',
-            // 'passwordResetExpire',
-            // 'createdAt',
-            // 'updatedAt',
-            // 'emailConfirmToken:email',
-            // 'emailConfirmed:email',
-
+            ['attribute' => 'isActive', 'filter' => Helper::YesNoList(), 'format' => 'boolean'],
+            ['attribute' => 'role', 'filter' => Helper::getRoles(), 'format' => 'role'],
             ['class' => 'yii\grid\ActionColumn'],
         ],
     ]); ?>

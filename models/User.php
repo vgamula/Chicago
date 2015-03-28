@@ -14,7 +14,7 @@ use yii\web\IdentityInterface;
  * @property string $email
  * @property string $firstName
  * @property string $lastName
- * @property integer $status
+ * @property integer $isActive
  * @property integer $role
  * @property string $passwordHash
  * @property string $passwordResetToken
@@ -28,7 +28,7 @@ use yii\web\IdentityInterface;
  */
 class User extends ActiveRecord implements IdentityInterface
 {
-
+    const SCENARIO_CREATE = 'create';
     use PasswordTrait;
     /**
      * Roles
@@ -36,12 +36,11 @@ class User extends ActiveRecord implements IdentityInterface
     const ROLE_ADMIN = 1;
     const ROLE_USER = 2;
 
-
     /**
      * Statuses
      */
-    const STATUS_ACTIVE = 1;
-    const STATUS_NONACTIVE = 0;
+    const ACTIVE = 1;
+    const NONACTIVE = 0;
 
     /**
      * @inheritdoc
@@ -57,9 +56,10 @@ class User extends ActiveRecord implements IdentityInterface
     public function rules()
     {
         return [
+            [['password', 'passwordConfirm'], 'required', 'on' => static::SCENARIO_CREATE],
             [['email', 'passwordHash', 'createdAt', 'updatedAt'], 'required'],
-            [['status', 'role', 'passwordResetExpire', 'createdAt', 'updatedAt', 'emailConfirmed'], 'integer'],
-            [['email', 'firstName', 'middleName', 'lastName', 'passwordHash', 'passwordResetToken', 'emailConfirmToken'], 'string', 'max' => 255]
+            [['isActive', 'role', 'passwordResetExpire', 'createdAt', 'updatedAt', 'emailConfirmed'], 'integer'],
+            [['email', 'firstName', 'lastName', 'password', 'passwordHash', 'passwordResetToken', 'emailConfirmToken'], 'string', 'max' => 255]
         ];
     }
 
@@ -72,9 +72,8 @@ class User extends ActiveRecord implements IdentityInterface
             'id' => 'ID',
             'email' => Yii::t('user', 'Email'),
             'firstName' => Yii::t('user', 'First Name'),
-            'middleName' => Yii::t('user', 'Middle Name'),
             'lastName' => Yii::t('user', 'Last Name'),
-            'status' => Yii::t('user', 'Status'),
+            'isActive' => Yii::t('user', 'Is Active'),
             'role' => Yii::t('user', 'Role'),
             'passwordHash' => Yii::t('user', 'Password Hash'),
             'passwordResetToken' => Yii::t('user', 'Password Reset Token'),

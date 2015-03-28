@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
+use app\components\Helper;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\User */
@@ -16,13 +17,11 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'firstName')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'middleName')->textInput(['maxlength' => true]) ?>
-
     <?= $form->field($model, 'lastName')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'status')->dropDownList([/*TODO*/]) ?>
+    <?= $form->field($model, 'isActive')->dropDownList(Helper::YesNoList()) ?>
 
-    <?= $form->field($model, 'role')->dropDownList([/*TODO*/]) ?>
+    <?= $form->field($model, 'role')->dropDownList(Helper::getRoles()) ?>
 
     <?= $form->field($model, 'password')->passwordInput(['maxlength' => true]) ?>
 

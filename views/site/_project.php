@@ -11,6 +11,6 @@ use yii\helpers\Html;
     <p><?= $model->shortDescription ?></p>
 
     <p>
-        <?= Html::a(Yii::t('prject', 'View Project'), ['/project/view', 'id' => $model->id], ['class' => 'btn btn-default']) ?>
+        <?= Html::a(Yii::t('project', 'View Project'), ['/site/view', 'slug' => $model->alias], ['class' => 'btn btn-default']) ?>
     </p>
 </div>

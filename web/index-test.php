@@ -8,7 +8,7 @@ require(__DIR__ . '/../vendor/autoload.php');
 require(__DIR__ . '/../vendor/yiisoft/yii2/Yii.php');
 
 Dotenv::load(dirname(__DIR__));
-Dotenv::required(['DB_HOST', 'DB_NAME', 'DB_USER', 'DB_PASS','YII_DEBUG']);
+Dotenv::required(['DB_HOST', 'DB_NAME', 'DB_USER', 'DB_PASS', 'YII_DEBUG']);
 
 defined('YII_DEBUG') or define('YII_DEBUG', getenv('YII_DEBUG'));
 defined('YII_ENV') or define('YII_ENV', getenv('YII_ENV'));

@@ -3,9 +3,9 @@
 use yii\db\Schema;
 use yii\db\Migration;
 
-class m150328_114419_create_projects_has_topics_table extends Migration
+class m150328_144430_create_projects_has_users extends Migration
 {
-    protected $tableName = '{{%projects_has_topics}}';
+    protected $tableName = '{{%projects_has_users}}';
 
     public function up()
     {
@@ -23,4 +23,15 @@ class m150328_114419_create_projects_has_topics_table extends Migration
         $this->dropTable($this->tableName);
         return true;
     }
+
+    /*
+    // Use safeUp/safeDown to run migration code within a transaction
+    public function safeUp()
+    {
+    }
+    
+    public function safeDown()
+    {
+    }
+    */
 }

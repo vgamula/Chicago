@@ -18,7 +18,7 @@ class m150323_215848_create_user_table extends Migration
             'email' => Schema::TYPE_STRING . ' NOT NULL',
             'firstName' => Schema::TYPE_STRING . ' NULL',
             'lastName' => Schema::TYPE_STRING . ' NULL',
-            'status' => Schema::TYPE_SMALLINT . ' NOT NULL DEFAULT 0',
+            'isActive' => Schema::TYPE_SMALLINT . ' NOT NULL DEFAULT 0',
             'role' => Schema::TYPE_SMALLINT . ' NOT NULL DEFAULT 0',
             'passwordHash' => Schema::TYPE_STRING . ' NOT NULL',
             'passwordResetToken' => Schema::TYPE_STRING . ' NULL DEFAULT NULL',

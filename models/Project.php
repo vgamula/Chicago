@@ -4,6 +4,8 @@ namespace app\models;
 
 use app\components\ProjectQuery;
 use Yii;
+use yii\behaviors\SluggableBehavior;
+use yii\behaviors\TimestampBehavior;
 use yii\db\ActiveRecord;
 
 /**
@@ -11,15 +13,22 @@ use yii\db\ActiveRecord;
  *
  * @property integer $id
  * @property string $title
+ * @property string $alias
  * @property string $shortDescription
  * @property string $description
- * @property integer $status
+ * @property integer $isPublished
  * @property integer $rating
  * @property integer $createdAt
  * @property integer $updatedAt
  */
 class Project extends ActiveRecord
 {
+    /**
+     * Statuses
+     */
+    const PUBLISHED = 1;
+    const UNPUBLISHED = 0;
+
     /**
      * @inheritdoc
      */
@@ -34,10 +43,10 @@ class Project extends ActiveRecord
     public function rules()
     {
         return [
-            [['title', 'description', 'shortDescription', 'status'], 'required'],
-            [['title'], 'string', 'max' => 255],
+            [['title', 'description', 'shortDescription', 'isPublished'], 'required'],
+            [['title', 'alias'], 'string', 'max' => 255],
             [['description'], 'string'],
-            [['status', 'createdAt', 'updatedAt'], 'integer'],
+            [['isPublished', 'createdAt', 'updatedAt'], 'integer'],
         ];
     }
 
@@ -45,9 +54,14 @@ class Project extends ActiveRecord
     {
         return array_merge(parent::behaviors(), [
             [
-                'class' => 'yii\behaviors\TimestampBehavior',
+                'class' => TimestampBehavior::className(),
                 'createdAtAttribute' => 'createdAt',
                 'updatedAtAttribute' => 'updatedAt',
+            ],
+            [
+                'class' => SluggableBehavior::className(),
+                'attribute' => 'title',
+                'slugAttribute' => 'alias',
             ],
         ]);
     }
@@ -61,14 +75,14 @@ class Project extends ActiveRecord
             'id' => Yii::t('project', 'ID'),
             'title' => Yii::t('project', 'Title'),
             'description' => Yii::t('project', 'Description'),
-            'status' => Yii::t('project', 'Status'),
+            'isPublished' => Yii::t('project', 'Is Published'),
             'createdAt' => Yii::t('project', 'Created At'),
             'updatedAt' => Yii::t('project', 'Updated At'),
         ];
     }
 
     /**
-     * @return object|\yii\db\ActiveQuery
+     * @return ProjectQuery
      * @throws \yii\base\InvalidConfigException
      */
     public static function find()
