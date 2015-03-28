@@ -6,7 +6,6 @@ use app\models\User;
  * @var $index integer
  */
 return [
-    'username' => $faker->userName,
     'email' => $faker->email,
     'middleName' => $faker->lastName,
     'lastName' => $faker->lastName,

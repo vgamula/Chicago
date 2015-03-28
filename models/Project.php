@@ -37,6 +37,17 @@ class Project extends \yii\db\ActiveRecord
         ];
     }
 
+    public function behaviors()
+    {
+        return array_merge(parent::behaviors(), [
+            [
+                'class' => 'yii\behaviors\TimestampBehavior',
+                'createdAtAttribute' => 'createdAt',
+                'updatedAtAttribute' => 'updatedAt',
+            ],
+        ]);
+    }
+
     /**
      * @inheritdoc
      */

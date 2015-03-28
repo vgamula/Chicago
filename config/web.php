@@ -7,9 +7,22 @@ $config = [
     'language' => 'uk-UA',
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
+    'controllerMap' => [
+        'elfinder' => [
+            'class' => 'mihaildev\elfinder\Controller',
+            'access' => ['@'],
+            'disabledCommands' => ['netmount'],
+            'roots' => [
+                [
+                    'path' => 'files/upload',
+                    'name' => ['category' => 'app', 'message' => 'Files'], // Yii::t($category, $message)
+                    'access' => ['read' => '*', 'write' => 'UserFilesAccess'] // * - для всех, иначе проверка доступа в даааном примере все могут видет а редактировать могут пользователи только с правами UserFilesAccess
+                ]
+            ],
+        ]
+    ],
     'components' => [
         'request' => [
-            // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
             'cookieValidationKey' => 'HSnwM1D73oHGfqYO4Ri-Shdtacv9tOZ5',
         ],
         'cache' => [
@@ -24,10 +37,7 @@ $config = [
         ],
         'mailer' => [
             'class' => 'yii\swiftmailer\Mailer',
-            // send all mails to a file by default. You have to set
-            // 'useFileTransport' to false and configure a transport
-            // for the mailer to send real emails.
-            'useFileTransport' => true,
+            'useFileTransport' => YII_ENV_DEV,
         ],
         'i18n' => [
             'translations' => [
