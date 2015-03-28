@@ -3,6 +3,7 @@
 namespace tests\codeception\unit\models;
 
 use app\models\User;
+use tests\codeception\unit\fixtures\UserFixture;
 use Yii;
 use yii\codeception\TestCase;
 use app\models\LoginForm;
@@ -48,13 +49,11 @@ class LoginFormTest extends TestCase
     public function testLoginCorrect()
     {
         /** @var User $user */
-        $user = new User(['email' => 'test@test.com', 'password' => 'password']);
-        $user->save(false);
-
+        $user = User::find()->one();
 
         $model = new LoginForm([
             'username' => $user->email,
-            'password' => 'password',
+            'password' => 'password_' . ($user->id - 1),
         ]);
 
 
@@ -63,13 +62,12 @@ class LoginFormTest extends TestCase
             expect('error message should not be set', $model->errors)->hasntKey('password');
             expect('user should be logged in', Yii::$app->user->isGuest)->false();
         });
-        $user->delete();
 
     }
 
     protected function setUp()
     {
         parent::setUp();
-        $this->loadFixtures();
+        $this->loadFixtures([new UserFixture()]);
     }
 }
