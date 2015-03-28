@@ -7,6 +7,7 @@ use Yii;
 use yii\behaviors\SluggableBehavior;
 use yii\behaviors\TimestampBehavior;
 use yii\db\ActiveRecord;
+use voskobovich\behaviors\ManyToManyBehavior;
 
 /**
  * This is the model class for table "{{%projects}}".
@@ -45,7 +46,8 @@ class Project extends ActiveRecord
     public function rules()
     {
         return [
-            [['title', 'description', 'shortDescription', 'isPublished', 'topics'], 'required'],
+            [['projectTopics'], 'safe'],
+            [['title', 'description', 'shortDescription', 'isPublished'], 'required'],
             [['title', 'alias'], 'string', 'max' => 255],
             [['description'], 'string'],
             [['isPublished', 'createdAt', 'updatedAt'], 'integer'],
@@ -65,6 +67,12 @@ class Project extends ActiveRecord
                 'attribute' => 'title',
                 'slugAttribute' => 'alias',
             ],
+            [
+                'class' => ManyToManyBehavior::className(),
+                'relations' => [
+                    'projectTopics' => 'topics'
+                ]
+            ]
         ]);
     }
 
@@ -121,14 +129,6 @@ class Project extends ActiveRecord
     public static function find()
     {
         return Yii::createObject(ProjectQuery::className(), [get_called_class()]);
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getProjectTopics()
-    {
-        return $this->hasMany(ProjectTopic::className(), ['projectId' => 'id']);
     }
 
     /**
