@@ -12,7 +12,7 @@ return [
     'lastName' => $faker->lastName,
     'role' => rand(1, 2),
     'passwordHash' => Yii::$app->getSecurity()->generatePasswordHash('password_' . $index),
-    'isActive' => User::STATUS_ACTIVE,
+    'isActive' => User::ACTIVE,
     'emailConfirmed' => 1,
     'createdAt' => time(),
     'updatedAt' => time(),

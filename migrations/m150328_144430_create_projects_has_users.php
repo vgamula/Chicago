@@ -23,15 +23,4 @@ class m150328_144430_create_projects_has_users extends Migration
         $this->dropTable($this->tableName);
         return true;
     }
-
-    /*
-    // Use safeUp/safeDown to run migration code within a transaction
-    public function safeUp()
-    {
-    }
-    
-    public function safeDown()
-    {
-    }
-    */
 }
