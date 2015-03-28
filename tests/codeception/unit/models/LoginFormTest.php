@@ -2,6 +2,7 @@
 
 namespace tests\codeception\unit\models;
 
+use app\models\User;
 use Yii;
 use yii\codeception\TestCase;
 use app\models\LoginForm;
@@ -46,16 +47,29 @@ class LoginFormTest extends TestCase
 
     public function testLoginCorrect()
     {
+        /** @var User $user */
+        $user = new User(['email' => 'test@test.com', 'password' => 'password']);
+        $user->save(false);
+
+
         $model = new LoginForm([
-            'username' => 'demo',
-            'password' => 'demo',
+            'username' => $user->email,
+            'password' => 'password',
         ]);
+
 
         $this->specify('user should be able to login with correct credentials', function () use ($model) {
             expect('model should login user', $model->login())->true();
             expect('error message should not be set', $model->errors)->hasntKey('password');
             expect('user should be logged in', Yii::$app->user->isGuest)->false();
         });
+        $user->delete();
+
     }
 
+    protected function setUp()
+    {
+        parent::setUp();
+        $this->loadFixtures();
+    }
 }

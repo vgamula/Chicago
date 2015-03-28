@@ -10,6 +10,14 @@ return [
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log', 'gii'],
     'controllerNamespace' => 'app\commands',
+    'controllerMap' => [
+        'fixture' => [
+            'class' => 'yii\faker\FixtureController',
+            'templatePath' => '@tests/codeception/unit/templates/fixtures',
+            'fixtureDataPath' => '@tests/codeception/unit/fixtures/data',
+            'namespace' => 'tests\codeception\unit\fixtures',
+        ],
+    ],
     'modules' => [
         'gii' => 'yii\gii\Module',
     ],
