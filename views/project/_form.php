@@ -14,7 +14,11 @@ use mihaildev\elfinder\ElFinder;
 
     <?php $form = ActiveForm::begin(); ?>
 
+    <?= $form->errorSummary($model) ?>
+
     <?= $form->field($model, 'title')->textInput(['maxlength' => true]) ?>
+
+    <?= $form->field($model, 'shortDescription')->textarea() ?>
 
     <?= $form->field($model, 'description')->widget(CKEditor::className(), [
         'editorOptions' => ElFinder::ckeditorOptions(
@@ -26,7 +30,7 @@ use mihaildev\elfinder\ElFinder;
     <?= $form->field($model, 'status')->textInput() ?>
 
     <div class="form-group">
-        <?= Html::submitButton($model->isNewRecord ? Yii::t('project', 'Create') : Yii::t('project', 'Update'), ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
+        <?= Html::submitButton($model->isNewRecord ? Yii::t('app', 'Create') : Yii::t('app', 'Update'), ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>

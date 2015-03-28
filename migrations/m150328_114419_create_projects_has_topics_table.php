@@ -3,9 +3,9 @@
 use yii\db\Schema;
 use yii\db\Migration;
 
-class m150328_084432_create_news_table extends Migration
+class m150328_114419_create_projects_has_topics_table extends Migration
 {
-    protected $tableName = '{{%news}}';
+    protected $tableName = '{{%topics}}';
 
     public function up()
     {
@@ -16,11 +16,6 @@ class m150328_084432_create_news_table extends Migration
         $this->createTable($this->tableName, [
             'id' => Schema::TYPE_PK,
             'title' => Schema::TYPE_STRING . ' NOT NULL',
-            'description' => Schema::TYPE_TEXT,
-            'isSent' => Schema::TYPE_SMALLINT . ' NOT NULL',
-            'projectId' => Schema::TYPE_INTEGER . ' NOT NULL',
-            'createdAt' => Schema::TYPE_INTEGER . ' NOT NULL',
-            'updatedAt' => Schema::TYPE_INTEGER . ' NOT NULL',
         ], $tableOptions);
     }
 

@@ -17,7 +17,6 @@ class m150323_215848_create_user_table extends Migration
             'id' => Schema::TYPE_PK,
             'email' => Schema::TYPE_STRING . ' NOT NULL',
             'firstName' => Schema::TYPE_STRING . ' NULL',
-            'middleName' => Schema::TYPE_STRING . ' NULL',
             'lastName' => Schema::TYPE_STRING . ' NULL',
             'status' => Schema::TYPE_SMALLINT . ' NOT NULL DEFAULT 0',
             'role' => Schema::TYPE_SMALLINT . ' NOT NULL DEFAULT 0',

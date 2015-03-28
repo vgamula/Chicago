@@ -17,10 +17,16 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
+    'Are you sure you want to delete this item?' => '',
+    'Create Project' => '',
     'Created At' => '',
+    'Delete' => '',
     'Description' => '',
     'ID' => '',
+    'Projects' => '',
     'Status' => '',
     'Title' => '',
+    'Update' => '',
+    'Update {modelClass}: ' => '',
     'Updated At' => '',
 ];

@@ -2,7 +2,9 @@
 
 namespace app\controllers;
 
+use app\models\Project;
 use Yii;
+use yii\data\ActiveDataProvider;
 use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\filters\VerbFilter;
@@ -49,7 +51,8 @@ class SiteController extends Controller
 
     public function actionIndex()
     {
-        return $this->render('index');
+        $dataProvider = new ActiveDataProvider(['query' => Project::find()->popular()]);
+        return $this->render('index', ['dataProvider' => $dataProvider]);
     }
 
     public function actionLogin()

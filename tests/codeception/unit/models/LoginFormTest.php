@@ -56,7 +56,6 @@ class LoginFormTest extends TestCase
             'password' => 'password_' . ($user->id - 1),
         ]);
 
-
         $this->specify('user should be able to login with correct credentials', function () use ($model) {
             expect('model should login user', $model->login())->true();
             expect('error message should not be set', $model->errors)->hasntKey('password');

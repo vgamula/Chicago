@@ -5,12 +5,12 @@ use app\models\User;
  * @var $faker Faker\Generator
  * @var $index integer
  */
+
 return [
     'email' => $faker->email,
-    'middleName' => $faker->lastName,
+    'firstName' => $faker->firstName,
     'lastName' => $faker->lastName,
     'role' => rand(1, 2),
-    'firstName' => $faker->firstName,
     'passwordHash' => Yii::$app->getSecurity()->generatePasswordHash('password_' . $index),
     'status' => User::STATUS_ACTIVE,
     'emailConfirmed' => 1,

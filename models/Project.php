@@ -2,19 +2,23 @@
 
 namespace app\models;
 
+use app\components\ProjectQuery;
 use Yii;
+use yii\db\ActiveRecord;
 
 /**
  * This is the model class for table "{{%projects}}".
  *
  * @property integer $id
  * @property string $title
+ * @property string $shortDescription
  * @property string $description
  * @property integer $status
+ * @property integer $rating
  * @property integer $createdAt
  * @property integer $updatedAt
  */
-class Project extends \yii\db\ActiveRecord
+class Project extends ActiveRecord
 {
     /**
      * @inheritdoc
@@ -30,10 +34,10 @@ class Project extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['title', 'createdAt', 'updatedAt'], 'required'],
+            [['title', 'description', 'shortDescription', 'status'], 'required'],
+            [['title'], 'string', 'max' => 255],
             [['description'], 'string'],
             [['status', 'createdAt', 'updatedAt'], 'integer'],
-            [['title'], 'string', 'max' => 255]
         ];
     }
 
@@ -61,5 +65,14 @@ class Project extends \yii\db\ActiveRecord
             'createdAt' => Yii::t('project', 'Created At'),
             'updatedAt' => Yii::t('project', 'Updated At'),
         ];
+    }
+
+    /**
+     * @return object|\yii\db\ActiveQuery
+     * @throws \yii\base\InvalidConfigException
+     */
+    public static function find()
+    {
+        return Yii::createObject(ProjectQuery::className(), [get_called_class()]);
     }
 }

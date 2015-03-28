@@ -13,7 +13,6 @@ use yii\web\IdentityInterface;
  * @property integer $id
  * @property string $email
  * @property string $firstName
- * @property string $middleName
  * @property string $lastName
  * @property integer $status
  * @property integer $role
@@ -24,6 +23,8 @@ use yii\web\IdentityInterface;
  * @property integer $updatedAt
  * @property string $emailConfirmToken
  * @property integer $emailConfirmed
+ *
+ * @property string $fullName
  */
 class User extends ActiveRecord implements IdentityInterface
 {
@@ -91,7 +92,7 @@ class User extends ActiveRecord implements IdentityInterface
      */
     public static function findIdentity($id)
     {
-        //@TODO implement it
+        return self::findOne($id);
     }
 
     /**
@@ -146,5 +147,10 @@ class User extends ActiveRecord implements IdentityInterface
     public static function findByEmail($email)
     {
         return self::findOne(['email' => $email]);
+    }
+
+    public function getFullName()
+    {
+        return "$this->lastName $this->firstName";
     }
 }

@@ -4,6 +4,7 @@ $params = require(__DIR__ . '/params.php');
 
 $config = [
     'id' => 'basic',
+    'name' => 'Volunteer Informer',
     'language' => 'uk-UA',
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
@@ -14,9 +15,11 @@ $config = [
             'disabledCommands' => ['netmount'],
             'roots' => [
                 [
-                    'path' => 'files/upload',
+                    'baseUrl'=>'@web',
+                    'basePath'=>'@webroot',
+                    'path' => '/files/upload',
                     'name' => ['category' => 'app', 'message' => 'Files'], // Yii::t($category, $message)
-                    'access' => ['read' => '*', 'write' => 'UserFilesAccess'] // * - для всех, иначе проверка доступа в даааном примере все могут видет а редактировать могут пользователи только с правами UserFilesAccess
+                    'access' => ['read' => '*'/*, 'write' => 'UserFilesAccess'*/] // * - для всех, иначе проверка доступа в даааном примере все могут видет а редактировать могут пользователи только с правами UserFilesAccess
                 ]
             ],
         ]
