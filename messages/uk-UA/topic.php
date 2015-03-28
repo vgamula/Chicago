@@ -17,13 +17,13 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
-    'Create' => '',
-    'Create Topic' => '',
-    'ID' => '',
-    'Project ID' => '',
-    'Title' => '',
-    'Topic ID' => '',
-    'Topics' => '',
-    'Update' => '',
-    'Update {modelClass}: ' => '',
+    'Create' => 'Створити',
+    'Create Topic' => 'Створити тематику',
+    'ID' => 'ID',
+    'Project ID' => 'ID Проекту',
+    'Title' => 'Заголовок',
+    'Topic ID' => 'ID тематики',
+    'Topics' => 'Тематики',
+    'Update' => 'Оноовити',
+    'Update {modelClass}: ' => 'Оновити {modelClass}: ',
 ];
