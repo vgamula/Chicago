@@ -140,9 +140,4 @@ class Project extends ActiveRecord
             ->viaTable(ProjectTopic::tableName(), ['projectId' => 'id']);
     }
 
-    public function setTopics()
-    {
-        return [];
-    }
-
 }
