@@ -14,7 +14,9 @@ class m150328_144430_create_projects_has_users extends Migration
             $tableOptions = 'CHARACTER SET utf8 COLLATE utf8_general_ci ENGINE=InnoDB';
         }
         $this->createTable($this->tableName, [
-            'id' => Schema::TYPE_PK,
+            'projectId' => Schema::TYPE_INTEGER,
+            'userId' => Schema::TYPE_INTEGER,
+            'PRIMARY KEY (`projectId`, `userId`)'
         ], $tableOptions);
     }
 

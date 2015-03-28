@@ -5,6 +5,8 @@ use yii\widgets\ActiveForm;
 use mihaildev\ckeditor\CKEditor;
 use mihaildev\elfinder\ElFinder;
 use app\components\Helper;
+use yii\helpers\ArrayHelper;
+use app\models\Topic;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Project */
@@ -22,6 +24,8 @@ use app\components\Helper;
     <?php if (!$model->isNewRecord): ?>
         <?= $form->field($model, 'alias')->textInput(['maxlength' => true]) ?>
     <?php endif; ?>
+
+    <?= $form->field($model, 'topics')->checkboxList(ArrayHelper::map(Topic::find()->asArray()->all(), 'id', 'title')) ?>
 
     <?= $form->field($model, 'isPublished')->dropDownList(Helper::YesNoList()) ?>
 

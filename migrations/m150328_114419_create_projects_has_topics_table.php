@@ -14,7 +14,9 @@ class m150328_114419_create_projects_has_topics_table extends Migration
             $tableOptions = 'CHARACTER SET utf8 COLLATE utf8_general_ci ENGINE=InnoDB';
         }
         $this->createTable($this->tableName, [
-            'id' => Schema::TYPE_PK,
+            'projectId' => Schema::TYPE_INTEGER,
+            'topicId' => Schema::TYPE_INTEGER,
+            'PRIMARY KEY (`projectId`, `topicId`)'
         ], $tableOptions);
     }
 

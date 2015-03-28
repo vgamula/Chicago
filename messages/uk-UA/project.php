@@ -27,6 +27,7 @@ return [
     'Is Published' => '',
     'Projects' => '',
     'Title' => '',
+    'Topics' => '',
     'Update' => '',
     'Update {modelClass}: ' => '',
     'Updated At' => '',

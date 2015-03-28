@@ -20,6 +20,8 @@ use yii\db\ActiveRecord;
  * @property integer $rating
  * @property integer $createdAt
  * @property integer $updatedAt
+ *
+ * @property ProjectTopic[] $projectTopics
  */
 class Project extends ActiveRecord
 {
@@ -43,7 +45,7 @@ class Project extends ActiveRecord
     public function rules()
     {
         return [
-            [['title', 'description', 'shortDescription', 'isPublished'], 'required'],
+            [['title', 'description', 'shortDescription', 'isPublished', 'topics'], 'required'],
             [['title', 'alias'], 'string', 'max' => 255],
             [['description'], 'string'],
             [['isPublished', 'createdAt', 'updatedAt'], 'integer'],
@@ -66,6 +68,36 @@ class Project extends ActiveRecord
         ]);
     }
 
+    public function afterSave($insert, $changedAttributes)
+    {
+/*        $oldTopics = [];
+        foreach ($this->projectTopics as $topic) {
+            $oldTopics[$topic->topicId] = $topic;
+        }
+
+        $newTopics = [];
+        foreach ($this->topics as $topicId) {
+            $newTopics[$topicId] = new ProjectTopic(['projectId' => $this->id, 'topicId' => $topicId]);
+        }*/
+        /** @var ProjectTopic[] $removed */
+      //  $removed = array_diff_key($oldTopics, $newTopics);
+        /** @var ProjectTopic[] $added */
+       /* $added = array_diff_key($newTopics, $oldTopics);
+        foreach ($added as $item) {
+            $item->link('project', $this);
+        }
+        foreach ($removed as $item) {
+            $item->delete();
+        }*/
+
+        parent::afterSave($insert, $changedAttributes);
+    }
+
+    public function afterFind()
+    {
+        parent::afterFind();
+    }
+
     /**
      * @inheritdoc
      */
@@ -75,6 +107,7 @@ class Project extends ActiveRecord
             'id' => Yii::t('project', 'ID'),
             'title' => Yii::t('project', 'Title'),
             'description' => Yii::t('project', 'Description'),
+            'topics' => Yii::t('project', 'Topics'),
             'isPublished' => Yii::t('project', 'Is Published'),
             'createdAt' => Yii::t('project', 'Created At'),
             'updatedAt' => Yii::t('project', 'Updated At'),
@@ -89,4 +122,27 @@ class Project extends ActiveRecord
     {
         return Yii::createObject(ProjectQuery::className(), [get_called_class()]);
     }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getProjectTopics()
+    {
+        return $this->hasMany(ProjectTopic::className(), ['projectId' => 'id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getTopics()
+    {
+        return $this->hasMany(Topic::className(), ['id' => 'topicId'])
+            ->viaTable(ProjectTopic::tableName(), ['projectId' => 'id']);
+    }
+
+    public function setTopics()
+    {
+        return [];
+    }
+
 }

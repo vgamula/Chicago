@@ -21,9 +21,12 @@ return [
     'Contact' => '',
     'Create' => '',
     'Home' => '',
+    'N/A' => '',
     'News' => '',
     'No' => '',
     'Projects' => '',
+    'Topics' => '',
     'Update' => '',
+    'Users' => '',
     'Yes' => '',
 ];

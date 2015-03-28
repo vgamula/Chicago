@@ -17,6 +17,13 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
+    'Create' => '',
+    'Create Topic' => '',
     'ID' => '',
+    'Project ID' => '',
     'Title' => '',
+    'Topic ID' => '',
+    'Topics' => '',
+    'Update' => '',
+    'Update {modelClass}: ' => '',
 ];
