@@ -5,6 +5,7 @@ namespace app\controllers;
 use Yii;
 use app\models\News;
 use yii\data\ActiveDataProvider;
+use yii\helpers\Url;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -74,6 +75,12 @@ class NewsController extends Controller
         ]);
     }
 
+    public function actionSend($id)
+    {
+        $model = $this->findModel($id);
+        $model->sendEmail();
+        return $this->redirect(Yii::$app->request->getReferrer());
+    }
 
     /**
      * Updates an existing News model.

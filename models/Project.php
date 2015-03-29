@@ -25,6 +25,7 @@ use yii\helpers\HtmlPurifier;
  * @property integer $updatedAt
  *
  * @property News[] $news
+ * @property User[] $users
  * @property Topic[] $topics
  * @property Topic[] $projectTopics
  */
@@ -93,6 +94,7 @@ class Project extends ActiveRecord
             'title' => Yii::t('project', 'Title'),
             'description' => Yii::t('project', 'Description'),
             'topics' => Yii::t('project', 'Topics'),
+            'projectTopics' => Yii::t('project', 'Project Topics'),
             'isPublished' => Yii::t('project', 'Is Published'),
             'createdAt' => Yii::t('project', 'Created At'),
             'updatedAt' => Yii::t('project', 'Updated At'),
@@ -118,13 +120,25 @@ class Project extends ActiveRecord
     }
 
     /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getUsers()
+    {
+        return $this->hasMany(User::className(), ['id' => 'topicId'])
+            ->viaTable(ProjectUser::tableName(), ['projectId' => 'id']);
+    }
+
+    /**
      * Get array of all subscribers
      * @return array
      */
     public function getUsersEmails()
     {
-        //@TODO implements it
-        return [];
+        $list = [];
+        foreach ($this->users as $user) {
+            $list[] = $user->email;
+        }
+        return $list;
     }
 
     /**

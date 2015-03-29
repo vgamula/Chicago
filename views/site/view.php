@@ -8,6 +8,8 @@ $this->title = $model->title;
         <h1><?= $model->title ?></h1>
         <?= $model->description ?>
     </div>
+    <div>
+    </div>
     <div class="news">
         <h2><?= Yii::t('app', 'News List') ?></h2>
         <?= \yii\widgets\ListView::widget([

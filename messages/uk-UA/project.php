@@ -17,6 +17,9 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
+    'Project ID' => 'ID',
+    'Project Topics' => 'Тематики проекту',
+    'User ID' => 'Користувач',
     'Add News' => 'Додати новину',
     'Are you sure you want to delete this item?' => 'Ви дійсьно хочете видалити цей запис?',
     'Create Project' => 'Створити Проект',

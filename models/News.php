@@ -91,19 +91,30 @@ class News extends ActiveRecord
      */
     public function getProject()
     {
-        return $this->hasOne(Project::tableName(), ['id' => 'projectId']);
+        return $this->hasOne(Project::className(), ['id' => 'projectId']);
     }
 
     /**
-     * Send e-mail to project subscribers
+     * Get extended title (project and news titles)
+     * @return string
+     */
+    public function getEmailTitle()
+    {
+        return $this->project->title . ' - ' . $this->title;
+    }
+
+    /**
+     * Send e-mail to project subscribers and update record
      */
     public function sendEmail()
     {
-        //@TODO implement it
-        Yii::$app->mailer->compose('news', ['model' => $this])
-            ->setTo($this->project->getUsersEmails())
-            ->setFrom('')
-            ->setSubject($this->title)
-            ->send();
+        $userEmails = $this->project->getUsersEmails();
+        $result = $userEmails ? (Yii::$app->mailer->compose('news', ['model' => $this])
+            ->setTo($userEmails)
+            ->setFrom(Yii::$app->params['adminEmail'])
+            ->setSubject($this->getEmailTitle())
+            ->send()) : true;
+        $this->isSent = true;
+        return $result && $this->save(false, ['isSent']);
     }
 }

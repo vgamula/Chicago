@@ -1,5 +1,6 @@
 <?php
 
+use app\models\News;
 use yii\helpers\Html;
 use yii\widgets\DetailView;
 
@@ -50,6 +51,12 @@ $this->params['breadcrumbs'][] = $this->title;
                 [
                     'class' => \yii\grid\ActionColumn::className(),
                     'controller' => 'news',
+                    'template' => '{view} {update} {delete} {send}',
+                    'buttons' => [
+                        'send' => function ($key, News $model) {
+                            return $model->isSent ? '' : Html::a('<span class="glyphicon glyphicon-envelope"></span>', ['/news/send', 'id' => $model->id], ['title' => Yii::t('news', 'Send'),]);
+                        }
+                    ]
                 ],
             ],
         ]) ?>
