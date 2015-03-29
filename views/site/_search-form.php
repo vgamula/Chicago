@@ -11,7 +11,7 @@ use app\models\Topic;
     <?php $form = ActiveForm::begin(['id' => 'search-form', 'action' => Url::to(['/site/search']), 'method' => 'get']) ?>
 
     <div class="text-center">
-        <span><?= Yii::t('app', 'Find projects') ?></span>
+        <h2><?= Yii::t('app', 'Find projects') ?></h2>
     </div>
     <?= $form->field($model, 'title')->label(Yii::t('search', 'Title')) ?>
 
