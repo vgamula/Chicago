@@ -9,8 +9,8 @@ $this->title = Yii::t('news', 'Update {modelClass}: ', [
     'modelClass' => 'News',
 ]) . ' ' . $model->title;
 $this->params['breadcrumbs'][] = ['label' => Yii::t('project', 'Projects'), 'url' => ['index']];
-$this->params['breadcrumbs'][] = ['label' => $model->project->title, 'url' => ['view', 'id' => $model->projectId]];
-$this->params['breadcrumbs'][] = ['label' => Yii::t('news', 'News'), 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => $model->project->title, 'url' => ['/projects/view', 'id' => $model->projectId]];
+$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'News List'), 'url' => ['/projects/view', 'id' => $model->projectId]];
 $this->params['breadcrumbs'][] = ['label' => $model->title, 'url' => ['view', 'id' => $model->id]];
 $this->params['breadcrumbs'][] = Yii::t('news', 'Update');
 ?>

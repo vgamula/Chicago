@@ -7,10 +7,9 @@ use yii\widgets\DetailView;
 /* @var $model app\models\News */
 
 $this->title = $model->title;
-
 $this->params['breadcrumbs'][] = ['label' => Yii::t('project', 'Projects'), 'url' => ['index']];
-$this->params['breadcrumbs'][] = ['label' => $model->project->title, 'url' => ['/projects/view', 'id' => $model->projectId]]; //@todo fix url
-$this->params['breadcrumbs'][] = ['label' => Yii::t('news', 'News'), 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => $model->project->title, 'url' => ['/projects/view', 'id' => $model->projectId]];
+$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'News List'), 'url' => ['/projects/view', 'id' => $model->projectId]];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="project-view">
