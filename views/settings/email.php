@@ -2,6 +2,8 @@
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 /* @var $this yii\web\View */
+
+//@todo add breadcrumbs
 ?>
 <div class="settings-email">
 

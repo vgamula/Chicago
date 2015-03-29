@@ -14,7 +14,7 @@ class SettingsController extends \yii\web\Controller
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             //@TODO set flash
         }
-        return $this->render('update', [
+        return $this->render('email', [
             'model' => $model,
         ]);
     }
@@ -25,7 +25,7 @@ class SettingsController extends \yii\web\Controller
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             //@TODO set flash
         }
-        return $this->render('update', [
+        return $this->render('password', [
             'model' => $model,
         ]);
     }
