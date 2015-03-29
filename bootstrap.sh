@@ -34,6 +34,6 @@ a2enmod rewrite
 
 cd /www/Chicago && \
     php yii migrate --interactive=0 && \
-    php yii fixture/load User --interactive=0 \
-    php yii fixture/load Topic --interactive=0 \
-    php yii fixture/load Project --interactive=0 \
+    php yii fixture/load User --interactive=0 && \
+    php yii fixture/load Topic --interactive=0 && \
+    php yii fixture/load Project --interactive=0 && \
