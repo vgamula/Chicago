@@ -44,6 +44,18 @@ AppAsset::register($this);
             $items[] = ['label' => Yii::t('app', 'Users'), 'url' => ['/users/index']];
             $items[] = ['label' => Yii::t('app', 'Topics'), 'url' => ['/topics/index']];
         }
+
+        $items[] = ['label' => Yii::t('app', 'Settings'), 'items' => [
+            [
+                'label' => Yii::t('app', 'Change Password'),
+                'url' => ['/settings/password'],
+            ],
+            [
+                'label' => Yii::t('app', 'Change E-mail'),
+                'url' => ['/settings/email'],
+            ],
+        ]];
+
         $items[] = ['label' => Yii::t('app', 'Logout ({email})', ['email' => Yii::$app->user->identity->fullName]),
             'url' => ['/site/logout'],
             'linkOptions' => ['data-method' => 'post']];
