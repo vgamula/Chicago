@@ -15,8 +15,18 @@ use app\models\Topic;
     </div>
     <?= $form->field($model, 'title')->label(Yii::t('search', 'Title')) ?>
 
-    <?= $form->field($model, 'projectTopics')->checkboxList(Topic::getDropDownArray('id', 'title')) ?>
-
+    <?= $form->field($model, 'projectTopics')->inline()->checkboxList(Topic::getDropDownArray('id', 'title')) ?>
+    <div class="row">
+        <div class="col-md-4">
+            <?= $form->field($model, 'countryId')->dropDownList(\app\models\Country::getDropDownArray('countryId', 'title'), ['id' => 'country-id', 'prompt' => Yii::t('app', 'Select...')]) ?>
+        </div>
+        <div class="col-md-4">
+            <?= $form->field($model, 'regionId')->dropDownList(\app\models\Region::getDropDownArray('regionId', 'title', ['countryId' => $model->countryId]), ['id' => 'region-id', 'prompt' => Yii::t('app', 'Select...')]) ?>
+        </div>
+        <div class="col-md-4">
+            <?= $form->field($model, 'cityId')->dropDownList(\app\models\City::getDropDownArray('cityId', 'title', ['regionId' => $model->regionId]), ['id' => 'city-id', 'prompt' => Yii::t('app', 'Select...')]) ?>
+        </div>
+    </div>
 
     <?= Html::submitButton(
         '<span class="glyphicon glyphicon-search" aria-hidden="true"></span> ' . Yii::t('app', 'Find'),

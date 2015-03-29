@@ -35,7 +35,6 @@ use app\models\Topic;
 
     <?= $form->field($model, 'cityId')->dropDownList(\app\models\City::getDropDownArray('cityId', 'title', ['regionId' => $model->regionId]), ['id' => 'city-id', 'prompt' => Yii::t('app', 'Select...')]) ?>
 
-
     <?= $form->field($model, 'shortDescription')->textarea() ?>
 
     <?= $form->field($model, 'description')->widget(CKEditor::className(), [

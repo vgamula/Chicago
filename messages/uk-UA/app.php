@@ -21,6 +21,7 @@ return [
     'Find projects' => '',
     'Page not found' => '',
     'Search Result' => '',
+    'Select...' => '',
     'Subscribe' => '',
     'Unsubscribe' => '',
     'Create' => 'Створити',
