@@ -2,9 +2,12 @@
 
 return [
     [
-        'title' => 'consequuntur',
+        'title' => 'Збір коштів',
     ],
     [
-        'title' => 'dolorem',
+        'title' => 'Допомога житлом',
+    ],
+    [
+        'title' => 'Навколишнє серидовище',
     ],
 ];
