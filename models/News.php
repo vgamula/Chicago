@@ -16,6 +16,8 @@ use yii\db\ActiveRecord;
  * @property integer $projectId
  * @property integer $createdAt
  * @property integer $updatedAt
+ *
+ * @property Project $project
  */
 class News extends ActiveRecord
 {
@@ -79,5 +81,10 @@ class News extends ActiveRecord
     public function sendEmail()
     {
         //@TODO implement it
+        Yii::$app->mailer->compose('news', ['model' => $this])
+            ->setTo($this->project->getUsersEmails())
+            ->setFrom('')
+            ->setSubject($this->title)
+            ->send();
     }
 }

@@ -17,10 +17,10 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
-    'About' => 'Про',
+    'About' => 'Про проект',
     'Contact' => 'Контакт',
     'Create' => 'Створити',
-    'Home' => 'Додому',
+    'Home' => 'Головна',
     'N/A' => 'Не вказано',
     'News' => 'Новина',
     'No' => 'Ні',

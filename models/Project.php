@@ -110,4 +110,13 @@ class Project extends ActiveRecord
             ->viaTable(ProjectTopic::tableName(), ['projectId' => 'id']);
     }
 
+    /**
+     * Get array of all subscribers
+     * @return array
+     */
+    public function getUsersEmails()
+    {
+        //@TODO implements it
+        return [];
+    }
 }
