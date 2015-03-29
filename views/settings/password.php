@@ -10,10 +10,8 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'password')->passwordInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'passwordConfirm')->passwordInput(['maxlength' => true]) ?>
-
     <div class="form-group">
-        <?= Html::submitButton(Yii::t('user', 'Save'), ['class' => 'btn btn-success']) ?>
+        <?= Html::submitButton(Yii::t('user', 'Save'), ['class' => 'btn btn-info']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>

@@ -29,7 +29,7 @@ use yii\web\IdentityInterface;
  */
 class User extends ActiveRecord implements IdentityInterface
 {
-    const SCENARIO_CREATE = 'create';
+    const SCENARIO_SET_PASSWORD = 'set-password';
     use PasswordTrait;
     /**
      * Roles
@@ -57,8 +57,8 @@ class User extends ActiveRecord implements IdentityInterface
     public function rules()
     {
         return [
-            [['password', 'passwordConfirm'], 'required', 'on' => static::SCENARIO_CREATE],
-            [['email', 'passwordHash', 'createdAt', 'updatedAt'], 'required'],
+            [['password'], 'required', 'on' => static::SCENARIO_SET_PASSWORD],
+            [['email', 'passwordHash'], 'required'],
             [['isActive', 'role', 'passwordResetExpire', 'createdAt', 'updatedAt', 'emailConfirmed'], 'integer'],
             [['email', 'firstName', 'lastName', 'password', 'passwordHash', 'passwordResetToken', 'emailConfirmToken'], 'string', 'max' => 255],
             ['role', 'preventChangingOwnRole'],
@@ -67,7 +67,7 @@ class User extends ActiveRecord implements IdentityInterface
 
     public function preventChangingOwnRole($attribute, $params)
     {
-        if (($this->oldAttributes['role'] == User::ROLE_ADMIN && $this->role != User::ROLE_ADMIN) && $this->id == Yii::$app->user->id) {
+        if (isset($this->oldAttributes['role']) && ($this->oldAttributes['role'] == User::ROLE_ADMIN && $this->role != User::ROLE_ADMIN) && $this->id == Yii::$app->user->id) {
             $this->addError($attribute, Yii::t('project', 'You cannot change own role.'));
         }
     }

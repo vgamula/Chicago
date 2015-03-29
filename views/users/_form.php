@@ -13,6 +13,8 @@ use app\components\Helper;
 
     <?php $form = ActiveForm::begin(); ?>
 
+    <?= $form->errorSummary($model) ?>
+
     <?= $form->field($model, 'email')->textInput(['maxlength' => true, 'type' => 'email']) ?>
 
     <?= $form->field($model, 'firstName')->textInput(['maxlength' => true]) ?>

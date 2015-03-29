@@ -71,7 +71,7 @@ class UsersController extends Controller
      */
     public function actionCreate()
     {
-        $model = new User(['scenario' => User::SCENARIO_CREATE]);
+        $model = new User(['scenario' => User::SCENARIO_SET_PASSWORD]);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
