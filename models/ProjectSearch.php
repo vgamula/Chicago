@@ -78,12 +78,14 @@ class ProjectSearch extends Project
             $query->andFilterWhere(['like', 'title', $word]);
         }
 
-        for ($i = 0; $i < count($this->projectTopics); $i++) {
-            $id = $this->projectTopics[$i];
-            $tableName = 'topics' . $i;
-            $query->innerJoin(ProjectTopic::tableName() . ' as ' . $tableName,
-                "({$tableName}.projectId = projects.id) AND ({$tableName}.topicId = :topicId{$i})",
-                [':topicId' . $i => $id]);
+        if (is_array($this->projectTopics)) {
+            for ($i = 0; $i < count($this->projectTopics); $i++) {
+                $id = $this->projectTopics[$i];
+                $tableName = 'topics' . $i;
+                $query->innerJoin(ProjectTopic::tableName() . ' as ' . $tableName,
+                    "({$tableName}.projectId = projects.id) AND ({$tableName}.topicId = :topicId{$i})",
+                    [':topicId' . $i => $id]);
+            }
         }
 
         return $dataProvider;
