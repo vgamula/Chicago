@@ -29,6 +29,12 @@ use app\models\Topic;
 
     <?= $form->field($model, 'isPublished')->dropDownList(Helper::YesNoList()) ?>
 
+    <?= $form->field($model, 'countryId')->dropDownList(\app\models\Country::getDropDownArray('countryId', 'title'), ['id' => 'country-id', 'prompt' => Yii::t('app', 'Select...')]) ?>
+
+    <?= $form->field($model, 'regionId')->dropDownList(\app\models\Region::getDropDownArray('regionId', 'title', ['countryId' => $model->countryId]), ['id' => 'region-id', 'prompt' => Yii::t('app', 'Select...')]) ?>
+
+    <?= $form->field($model, 'cityId')->dropDownList(\app\models\City::getDropDownArray('cityId', 'title', ['regionId' => $model->regionId]), ['id' => 'city-id', 'prompt' => Yii::t('app', 'Select...')]) ?>
+
     <?= $form->field($model, 'shortDescription')->textarea() ?>
 
     <?= $form->field($model, 'description')->widget(CKEditor::className(), [

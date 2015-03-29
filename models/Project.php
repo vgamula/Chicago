@@ -23,6 +23,9 @@ use yii\helpers\HtmlPurifier;
  * @property integer $rating
  * @property integer $createdAt
  * @property integer $updatedAt
+ * @property integer $countryId
+ * @property integer $regionId
+ * @property integer $cityId
  *
  * @property News[] $news
  * @property User[] $users
@@ -51,7 +54,7 @@ class Project extends ActiveRecord
     public function rules()
     {
         return [
-            [['title', 'description', 'shortDescription', 'isPublished', 'projectTopics'], 'required'],
+            [['title', 'description', 'shortDescription', 'isPublished', 'projectTopics', 'countryId', 'regionId', 'cityId'], 'required'],
             [['title', 'alias'], 'string', 'max' => 255],
             [['description'], 'string'],
             [['isPublished', 'createdAt', 'updatedAt'], 'integer'],
@@ -98,6 +101,9 @@ class Project extends ActiveRecord
             'isPublished' => Yii::t('project', 'Is Published'),
             'createdAt' => Yii::t('project', 'Created At'),
             'updatedAt' => Yii::t('project', 'Updated At'),
+            'countryId' => Yii::t('project', 'Country'),
+            'regionId' => Yii::t('project', 'Region'),
+            'cityId' => Yii::t('project', 'City'),
         ];
     }
 
@@ -163,5 +169,20 @@ class Project extends ActiveRecord
     public function getNewsProvider()
     {
         return new ActiveDataProvider(['query' => $this->getNews()->orderBy('updatedAt DESC')]);
+    }
+
+    public function getCountry()
+    {
+        return $this->hasOne(Country::className(), ['countryId' => 'countryId']);
+    }
+
+    public function getRegion()
+    {
+        return $this->hasOne(Region::className(), ['regionId' => 'regionId']);
+    }
+
+    public function getCity()
+    {
+        return $this->hasOne(City::className(), ['cityId' => 'cityId']);
     }
 }

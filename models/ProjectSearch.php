@@ -39,7 +39,7 @@ class ProjectSearch extends Project
     public function rules()
     {
         return [
-            [['title', 'description', 'shortDescription', 'isPublished', 'projectTopics'], 'safe'],
+            [['title', 'description', 'shortDescription', 'isPublished', 'projectTopics', 'countryId', 'regionId', 'cityId'], 'safe'],
             [['title', 'alias'], 'string', 'max' => 255],
             [['description'], 'string'],
         ];
@@ -64,10 +64,14 @@ class ProjectSearch extends Project
         $this->load($params);
 
         if (!$this->validate()) {
-            // uncomment the following line if you do not want to any records when validation fails
-            // $query->where('0=1');
             return $dataProvider;
         }
+
+        $query->andFilterWhere([
+            'cityId' => $this->cityId,
+            'regionId' => $this->regionId,
+            'countryId' => $this->countryId,
+        ]);
 
         $text = explode(' ', $this->title);
         foreach ($text as $word) {
@@ -76,7 +80,6 @@ class ProjectSearch extends Project
 
         for ($i = 0; $i < count($this->projectTopics); $i++) {
             $id = $this->projectTopics[$i];
-
             $tableName = 'topics' . $i;
             $query->innerJoin(ProjectTopic::tableName() . ' as ' . $tableName,
                 "({$tableName}.projectId = projects.id) AND ({$tableName}.topicId = :topicId{$i})",
