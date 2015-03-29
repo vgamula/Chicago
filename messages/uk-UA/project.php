@@ -17,9 +17,9 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
-    'City' => '',
-    'Country' => '',
-    'Region' => '',
+    'Project ID' => 'ID',
+    'Project Topics' => 'Тематики проекту',
+    'User ID' => 'Користувач',
     'Add News' => 'Додати новину',
     'Are you sure you want to delete this item?' => 'Ви дійсьно хочете видалити цей запис?',
     'Create Project' => 'Створити Проект',
@@ -36,9 +36,10 @@ return [
     'Update' => 'Оновити',
     'Update {modelClass}: ' => 'Оновити {modelClass}: ',
     'Updated At' => 'Дата оновлення: ',
-    'User ID' => 'Користувач',
     'View Project' => 'Переглянути проект',
     'View on site' => 'Переглянути на сайті',
+    'You cannot change own role.' => 'Ви не можете змінити свою роль.',
     'View project' => 'Переглянути проект',
+    'Alias' => 'Псевдонім'
     'You cannot change own role.' => 'Ви не можете змінити свою роль.',
 ];

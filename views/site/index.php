@@ -9,7 +9,7 @@ $this->title = 'My Yii Application';
         <?= $this->render('_search-form',['model'=>new \app\models\ProjectSearch()]) ?>
     </div>
 
-    <div class="body-content">
+    <div class="body-content margin-top-20">
 
         <div class="row">
             <?= \yii\widgets\ListView::widget([

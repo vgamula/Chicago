@@ -17,13 +17,12 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
-    'Find' => '',
-    'Find projects' => '',
-    'Page not found' => '',
-    'Search Result' => '',
-    'Select...' => '',
-    'Subscribe' => '',
-    'Unsubscribe' => '',
+    'Find' => 'Шукати',
+    'Find projects' => 'Пошук проектів',
+    'Page not found' => 'Сторінку не знайдено',
+    'Search Result' => 'Рузкльтати пошуку',
+    'Subscribe' => 'Підписатись',
+    'Unsubscribe' => 'Відписатись',
     'Create' => 'Створити',
     'Home' => 'Головна',
     'Login' => 'Вхід',

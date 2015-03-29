@@ -94,6 +94,7 @@ class Project extends ActiveRecord
         return [
             'id' => Yii::t('project', 'ID'),
             'title' => Yii::t('project', 'Title'),
+            'alias' => Yii::t('project', 'Alias'),
             'description' => Yii::t('project', 'Description'),
             'topics' => Yii::t('project', 'Topics'),
             'projectTopics' => Yii::t('project', 'Project Topics'),
