@@ -17,7 +17,9 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
-    'Please fill out the following fields to login:' => 'Будь ласка, коректно заповніть наступні поля для того, щоб авторизуватися',
+    'Denied' => 'Заборонено',
+    'Registration' => 'Реєстрація',
+    'Registration was success' => 'Реєстрація успішна',
     'Change E-mail' => 'Змінити е-mail',
     'Change Password' => 'Змінити пароль',
     'Create' => 'Створити',
@@ -31,6 +33,7 @@ return [
     'News List' => 'Новини',
     'No' => 'Ні',
     'Page not found' => 'Сторінку не знайдено',
+    'Please fill out the following fields to login:' => 'Будь ласка, коректно заповніть наступні поля для того, щоб авторизуватися',
     'Projects' => 'Проекти',
     'Search Result' => 'Рузкльтати пошуку',
     'Select...' => 'Вибрати...',

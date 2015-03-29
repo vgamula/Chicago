@@ -17,7 +17,7 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
-    'Save' => 'Зберегти',
+    'Registration' => 'Реєстрація',
     'Admin' => 'Адміністратор',
     'Are you sure you want to delete this item?' => 'Ви впевнені, що хочете видалити цей запис?',
     'Create' => 'Створити',
@@ -35,6 +35,7 @@ return [
     'Password Reset Expire' => 'Термін закінчення пароля',
     'Password Reset Token' => 'Токен для відновлення пароля',
     'Role' => 'Роль',
+    'Save' => 'Зберегти',
     'Update' => 'Редагувати',
     'Update {modelClass}: ' => 'Редагувати',
     'Updated At' => 'Дата оновлення: ',
