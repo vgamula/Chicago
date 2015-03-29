@@ -16,7 +16,7 @@ apt-get -y install mysql-server mysql-client libmysqlclient-dev
 mysql -e 'create database chicago;' --user=root --password=root
 
 #install php with apache
-apt-get -y install php5 libapache2-mod-php5 php5-mysql
+apt-get -y install php5 libapache2-mod-php5 php5-mysql sendmail
 
 #install composer
 curl -sS https://getcomposer.org/installer | php
@@ -31,9 +31,7 @@ cp /www/Chicago/apache.conf /etc/apache2/sites-available/000-default.conf
 a2enmod rewrite
 /etc/init.d/apache2 restart
 
-
+# load data
 cd /www/Chicago && \
     php yii migrate --interactive=0 && \
-    php yii fixture/load User --interactive=0 && \
-    php yii fixture/load Topic --interactive=0 && \
-    php yii fixture/load Project --interactive=0 && \
+    php yii fixture/load User Project Topic --interactive=0

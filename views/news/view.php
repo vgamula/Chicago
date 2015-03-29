@@ -9,7 +9,7 @@ use yii\widgets\DetailView;
 $this->title = $model->title;
 
 $this->params['breadcrumbs'][] = ['label' => Yii::t('project', 'Projects'), 'url' => ['index']];
-$this->params['breadcrumbs'][] = ['label' => $model->project->title, 'url' => ['view', 'id' => $model->projectId]]; //@todo
+$this->params['breadcrumbs'][] = ['label' => $model->project->title, 'url' => ['/projects/view', 'id' => $model->projectId]]; //@todo fix url
 $this->params['breadcrumbs'][] = ['label' => Yii::t('news', 'News'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
@@ -20,15 +20,15 @@ $this->params['breadcrumbs'][] = $this->title;
     <p>
         <?php if (!$model->isSent): ?>
             <?= Html::a(Yii::t('news', 'Send'), ['send', 'id' => $model->id], ['class' => 'btn btn-info']) ?>
-        <?php else: ?>
             <?= Html::a(Yii::t('news', 'Update'), ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
         <?php endif ?>
+
         <?= Html::a(Yii::t('news', 'Delete'), ['delete', 'id' => $model->id], [
             'class' => 'btn btn-danger',
             'data' => [
                 'confirm' => Yii::t('project', 'Are you sure you want to delete this item?'),
                 'method' => 'post',
-            ],
+            ],//@todo add project view link
         ]) ?>
     </p>
 
@@ -36,6 +36,7 @@ $this->params['breadcrumbs'][] = $this->title;
         'model' => $model,
         'attributes' => [
             'title',
+            'updatedAt:datetime',
             'isSent:boolean',
             'description:html',
         ],

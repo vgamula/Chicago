@@ -95,6 +95,12 @@ class SiteController extends Controller
         return $this->redirect(['/site/view', 'slug' => $project->alias]);
     }
 
+    public function actionSearch()
+    {
+
+        return $this->render('search');
+    }
+
     public function actionIndex()
     {
         $dataProvider = new ActiveDataProvider(['query' => Project::find()->popular()->published()]);

@@ -40,7 +40,6 @@ $config = [
         ],
         'mailer' => [
             'class' => 'yii\swiftmailer\Mailer',
-            'useFileTransport' => YII_ENV_DEV,
         ],
         'i18n' => [
             'translations' => [
