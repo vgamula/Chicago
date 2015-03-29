@@ -17,7 +17,7 @@ class ProjectQuery extends ActiveQuery
      */
     public function popular($limit = 3)
     {
-        return $this->limit($limit)->orderBy('rating');
+        return $this->limit($limit)->orderBy('rating DESC');
     }
 
     /**

@@ -4,6 +4,7 @@ namespace app\models;
 
 use app\components\ProjectQuery;
 use Yii;
+use yii\base\Event;
 use yii\behaviors\SluggableBehavior;
 use yii\behaviors\TimestampBehavior;
 use yii\data\ActiveDataProvider;
@@ -191,3 +192,21 @@ class Project extends ActiveRecord
         return $this->hasOne(City::className(), ['cityId' => 'cityId']);
     }
 }
+
+/** Events */
+Event::on(ProjectUser::className(), ActiveRecord::EVENT_AFTER_DELETE, function (Event $event) {
+    /** @var Project $project */
+    $project = Project::findOne($event->sender->projectId);
+    if ($project) {
+        $project->rating--;
+        $project->save(false, ['rating']);
+    }
+});
+Event::on(ProjectUser::className(), ActiveRecord::EVENT_AFTER_INSERT, function (Event $event) {
+    /** @var Project $project */
+    $project = Project::findOne($event->sender->projectId);
+    if ($project) {
+        $project->rating++;
+        $project->save(false, ['rating']);
+    }
+});
