@@ -41,5 +41,5 @@ return [
     'View Project' => 'Переглянути проект',
     'View on site' => 'Переглянути на сайті',
     'View project' => 'Переглянути проект',
-    'You cannot change own role.' => 'Ви не можете змінити свою роль.',
+    'You cannot change own role.' => 'Ви не можете змінити власну роль.',
 ];
