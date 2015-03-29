@@ -12,7 +12,7 @@ class SettingsController extends \yii\web\Controller
         $model = $this->findModel();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            //@TODO set flash
+            Yii::$app->session->setFlash('info', Yii::t('app', 'Data was successfully updated'));
         }
         return $this->render('email', [
             'model' => $model,
@@ -22,8 +22,10 @@ class SettingsController extends \yii\web\Controller
     public function actionPassword()
     {
         $model = $this->findModel();
+        $model->scenario = User::SCENARIO_SET_PASSWORD;
+
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            //@TODO set flash
+            Yii::$app->session->setFlash('info', Yii::t('app', 'Data was successfully updated'));
         }
         return $this->render('password', [
             'model' => $model,

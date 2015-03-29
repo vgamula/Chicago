@@ -31,6 +31,11 @@ use yii\helpers\HtmlPurifier;
  * @property User[] $users
  * @property Topic[] $topics
  * @property Topic[] $projectTopics
+ *
+ * @property Country $country
+ * @property Region $region
+ * @property City $city
+ *
  */
 class Project extends ActiveRecord
 {
