@@ -28,8 +28,12 @@ $this->params['breadcrumbs'][] = $this->title;
             'data' => [
                 'confirm' => Yii::t('project', 'Are you sure you want to delete this item?'),
                 'method' => 'post',
-            ],//@todo add project view link
+            ],
         ]) ?>
+
+        <?= Html::a(Yii::t('project', 'View project'), ['/projects/view', 'id' => $model->id], [
+            'class' => 'btn btn-info',
+        ]) ?> 
     </p>
 
     <?= DetailView::widget([
