@@ -5,16 +5,14 @@ namespace app\controllers;
 use app\models\Project;
 use app\models\ProjectSearch;
 use app\models\ProjectUser;
+use app\models\User;
 use Yii;
-use yii\base\InvalidParamException;
 use yii\data\ActiveDataProvider;
 use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\filters\VerbFilter;
 use app\models\LoginForm;
-use app\models\ContactForm;
 use yii\web\NotFoundHttpException;
-use yii\web\User;
 
 class SiteController extends Controller
 {
@@ -23,11 +21,25 @@ class SiteController extends Controller
         return [
             'access' => [
                 'class' => AccessControl::className(),
-                'only' => ['logout'],
                 'rules' => [
                     [
-                        'actions' => ['logout'],
+                        'actions' => ['error'],
                         'allow' => true,
+                        'roles' => ['*'],
+                    ],
+                    [
+                        'actions' => ['login','registration'],
+                        'allow' => true,
+                        'roles' => ['?'],
+                    ],
+                    [
+                        'actions' => [],
+                        'allow' => true,
+                        'roles' => ['@'],
+                    ],
+                    [
+                        'actions' => ['login','registration'],
+                        'allow' => false,
                         'roles' => ['@'],
                     ],
                 ],
@@ -145,5 +157,15 @@ class SiteController extends Controller
         Yii::$app->user->logout();
 
         return $this->goHome();
+    }
+
+    public function actionRegistration()
+    {
+        $model = new User(['scenario' => User::SCENARIO_SET_PASSWORD]);
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            Yii::$app->session->setFlash('info', Yii::t('app', 'Registration was success'));
+            $model = new User();
+        }
+        return $this->render('registration', ['model' => $model]);
     }
 }

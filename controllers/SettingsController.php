@@ -4,9 +4,26 @@ namespace app\controllers;
 
 use app\models\User;
 use Yii;
+use yii\filters\AccessControl;
 
 class SettingsController extends \yii\web\Controller
 {
+
+    public function behaviors()
+    {
+        return [
+            'access' => [
+                'class' => AccessControl::className(),
+                'rules'=>[
+                    [
+                        'allow' => true,
+                        'roles' => ['@'],
+                    ],
+                ]
+            ]
+        ];
+    }
+
     public function actionEmail()
     {
         $model = $this->findModel();

@@ -59,6 +59,7 @@ class User extends ActiveRecord implements IdentityInterface
         return [
             [['password'], 'required', 'on' => static::SCENARIO_SET_PASSWORD],
             [['email', 'passwordHash'], 'required'],
+            [['email'], 'unique'],
             [['isActive', 'role', 'passwordResetExpire', 'createdAt', 'updatedAt', 'emailConfirmed'], 'integer'],
             [['email', 'firstName', 'lastName', 'password', 'passwordHash', 'passwordResetToken', 'emailConfirmToken'], 'string', 'max' => 255],
             ['role', 'preventChangingOwnRole'],
