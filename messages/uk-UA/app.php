@@ -17,12 +17,11 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
-    'Change E-mail' => '',
-    'Change Password' => '',
-    'Data was successfully updated' => '',
-    'Select...' => '',
-    'Settings' => '',
+    'Please fill out the following fields to login:' => 'Будь ласка, коректно заповніть наступні поля для того, щоб авторизуватися',
+    'Change E-mail' => 'Змінити е-mail',
+    'Change Password' => 'Змінити пароль',
     'Create' => 'Створити',
+    'Data was successfully updated' => 'Дані були успішно оновлені',
     'Find' => 'Шукати',
     'Find projects' => 'Пошук проектів',
     'Home' => 'Головна',
@@ -34,6 +33,8 @@ return [
     'Page not found' => 'Сторінку не знайдено',
     'Projects' => 'Проекти',
     'Search Result' => 'Рузкльтати пошуку',
+    'Select...' => 'Вибрати...',
+    'Settings' => 'Налаштування',
     'Subscribe' => 'Підписатись',
     'Topics' => 'Тематики',
     'Unsubscribe' => 'Відписатись',

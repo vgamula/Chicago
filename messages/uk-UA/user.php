@@ -17,14 +17,14 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
-    'Save' => '',
+    'Save' => 'Зберегти',
     'Admin' => 'Адміністратор',
     'Are you sure you want to delete this item?' => 'Ви впевнені, що хочете видалити цей запис?',
     'Create' => 'Створити',
     'Create User' => 'Створити користувача',
     'Created At' => 'Дата створення: ',
     'Delete' => 'Видалити',
-    'Email' => 'Електроонна адреса',
+    'Email' => 'E-Mail',
     'Email Confirm Token' => 'Токен для підтвердження електронної адреси',
     'Email Confirmed' => 'Елекроонна адреса підтверджена',
     'First Name' => 'Прізвище',
