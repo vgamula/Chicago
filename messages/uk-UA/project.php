@@ -35,7 +35,7 @@ return [
     'Title' => 'Заголовок',
     'Topics' => 'Тематики',
     'Update' => 'Оновити',
-    'Update {modelClass}: ' => 'Оновити {modelClass}: ',
+    'Update Project:' => 'Оновити проект:',
     'Updated At' => 'Дата оновлення: ',
     'User ID' => 'Користувач',
     'View Project' => 'Переглянути проект',

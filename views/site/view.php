@@ -9,8 +9,19 @@ $this->title = $model->title;
     <div class="project">
         <h1><?= $model->title ?></h1>
         <?= $model->description ?>
+        <div>
+            <span class="label label-info"><?= $model->country->title ?></span>
+            <span class="label label-info"><?= $model->region->title ?></span>
+            <span class="label label-info"><?= $model->city->title ?></span>
+        </div>
+        <div>
+            <?php foreach($model->topics as $topic): ?>
+                <span class="label label-success"><?= $topic->title ?></span>
+            <?php endforeach ?>
+        </div>
     </div>
-    <div>
+    </div>
+    <div class="margin-top-20">
         <?php if (!Yii::$app->user->isGuest): ?>
             <?php if (!$model->hasSubscriber(Yii::$app->user->identity)): ?>
                 <?= Html::a(Yii::t('app', 'Subscribe'), ['/site/subscribe', 'id' => $model->id], ['class' => 'btn btn-success']) ?>
