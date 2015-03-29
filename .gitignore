@@ -29,3 +29,5 @@ phpunit.phar
 
 # .env config file
 .env
+
+.vagrant
