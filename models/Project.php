@@ -51,8 +51,7 @@ class Project extends ActiveRecord
     public function rules()
     {
         return [
-            [['projectTopics'], 'safe'],
-            [['title', 'description', 'shortDescription', 'isPublished'], 'required'],
+            [['title', 'description', 'shortDescription', 'isPublished', 'projectTopics'], 'required'],
             [['title', 'alias'], 'string', 'max' => 255],
             [['description'], 'string'],
             [['isPublished', 'createdAt', 'updatedAt'], 'integer'],
@@ -102,6 +101,16 @@ class Project extends ActiveRecord
     }
 
     /**
+     * Check user as subscriber
+     * @param User $user
+     * @return boolean
+     */
+    public function hasSubscriber(User $user)
+    {
+        return ProjectUser::find()->where(['userId' => $user->id, 'projectId' => $this->id])->exists();
+    }
+
+    /**
      * @return ProjectQuery
      * @throws \yii\base\InvalidConfigException
      */
@@ -124,7 +133,7 @@ class Project extends ActiveRecord
      */
     public function getUsers()
     {
-        return $this->hasMany(User::className(), ['id' => 'topicId'])
+        return $this->hasMany(User::className(), ['id' => 'userId'])
             ->viaTable(ProjectUser::tableName(), ['projectId' => 'id']);
     }
 
@@ -152,6 +161,6 @@ class Project extends ActiveRecord
 
     public function getNewsProvider()
     {
-        return new ActiveDataProvider(['query' => $this->getNews()]);
+        return new ActiveDataProvider(['query' => $this->getNews()->orderBy('updatedAt DESC')]);
     }
 }
