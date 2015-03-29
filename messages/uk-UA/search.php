@@ -17,18 +17,5 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
-    'Create' => 'Створити',
-    'Create News' => 'Створити новину',
-    'Created At' => 'Дата створення: ',
-    'Delete' => 'Видалити',
-    'Description' => 'Опис',
-    'ID' => 'ID',
-    'Is Sent' => 'Відправлено',
-    'Project ID' => 'ID проекту',
-    'Send' => 'Відправити',
-    'Send immediately' => 'Відправити одразу',
-    'Title' => 'Заголовок',
-    'Update' => 'Оновити',
-    'Update {modelClass}: ' => 'Оновити {modelClass}: ',
-    'Updated At' => 'Дата оновлення: ',
+    'Title' => '',
 ];

@@ -23,6 +23,10 @@ return [
         'gii' => 'yii\gii\Module',
     ],
     'components' => [
+        'authManager' => [
+            'class' => 'yii\rbac\PhpManager',
+            'defaultRoles' => ['admin', 'user'],
+        ],
         'cache' => [
             'class' => 'yii\caching\FileCache',
         ],

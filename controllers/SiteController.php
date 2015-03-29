@@ -3,8 +3,10 @@
 namespace app\controllers;
 
 use app\models\Project;
+use app\models\ProjectSearch;
 use app\models\ProjectUser;
 use Yii;
+use yii\base\InvalidParamException;
 use yii\data\ActiveDataProvider;
 use yii\filters\AccessControl;
 use yii\web\Controller;
@@ -65,7 +67,7 @@ class SiteController extends Controller
         /** @var User $user */
         $user = Yii::$app->user->identity;
         if (!isset($project) || ProjectUser::find(['projectId' => $project->id, 'userId' => $user->id])->exists()) {
-            throw new NotFoundHttpException();
+            throw new NotFoundHttpException(Yii::t('app', 'Page not found'));
         }
         $relation = new ProjectUser(['projectId' => $project->id, 'userId' => $user->id]);
         $relation->save(false);
@@ -88,7 +90,7 @@ class SiteController extends Controller
         /** @var ProjectUser $relation */
         $relation = ProjectUser::findOne(['projectId' => $project->id, 'userId' => $user->id]);
         if (!isset($project) || !isset($relation)) {
-            throw new NotFoundHttpException();
+            throw new NotFoundHttpException(Yii::t('app', 'Page not found'));
         }
         $relation->delete();
 
@@ -97,8 +99,14 @@ class SiteController extends Controller
 
     public function actionSearch()
     {
-
-        return $this->render('search');
+        $model = new ProjectSearch();
+        if ($dataProvider = $model->search(Yii::$app->request->get())) {
+            return $this->render('search', [
+                'model' => $model,
+                'dataProvider' => $dataProvider
+            ]);
+        }
+        throw new NotFoundHttpException(Yii::t('app', 'Page not found'));
     }
 
     public function actionIndex()
@@ -110,6 +118,9 @@ class SiteController extends Controller
     public function actionView($slug)
     {
         $model = Project::find()->bySlug($slug)->published()->one();
+        if (!isset($model)) {
+            throw new NotFoundHttpException(Yii::t('app', 'Page not found'));
+        }
         return $this->render('view', ['model' => $model]);
     }
 

@@ -53,8 +53,17 @@ $this->params['breadcrumbs'][] = $this->title;
                     'controller' => 'news',
                     'template' => '{view} {update} {delete} {send}',
                     'buttons' => [
-                        'send' => function ($key, News $model) {
-                            return $model->isSent ? '' : Html::a('<span class="glyphicon glyphicon-envelope"></span>', ['/news/send', 'id' => $model->id], ['title' => Yii::t('news', 'Send'),]);
+                        'send' => function ($url, News $model) {
+                            return $model->isSent ? '' : Html::a('<span class="glyphicon glyphicon-envelope"></span>',
+                                ['/news/send', 'id' => $model->id],
+                                ['title' => Yii::t('news', 'Send'),]
+                            );
+                        },
+                        'update' => function ($url, $model, $key) {
+                            return $model->isSent ? '' : Html::a('<span class="glyphicon glyphicon-pencil"></span>', $url, [
+                                'title' => Yii::t('yii', 'Update'),
+                                'data-pjax' => '0',
+                            ]);
                         }
                     ]
                 ],

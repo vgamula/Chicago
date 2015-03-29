@@ -4,6 +4,7 @@ namespace app\models;
 
 use nullref\useful\PasswordTrait;
 use Yii;
+use yii\base\NotSupportedException;
 use yii\db\ActiveRecord;
 use yii\web\IdentityInterface;
 
@@ -66,7 +67,7 @@ class User extends ActiveRecord implements IdentityInterface
 
     public function preventChangingOwnRole($attribute, $params)
     {
-        if ($this->id === Yii::$app->user->id) {
+        if (($this->oldAttributes['role'] == User::ROLE_ADMIN && $this->role != User::ROLE_ADMIN) && $this->id == Yii::$app->user->id) {
             $this->addError($attribute, Yii::t('project', 'You cannot change own role.'));
         }
     }
@@ -104,12 +105,13 @@ class User extends ActiveRecord implements IdentityInterface
 
     /**
      * @inheritdoc
+     * @param mixed $token
+     * @param null $type
+     * @return void|IdentityInterface
      */
     public static function findIdentityByAccessToken($token, $type = null)
     {
-        //@TODO implement it
-
-        return null;
+        throw new NotSupportedException();
     }
 
     /**
@@ -122,18 +124,20 @@ class User extends ActiveRecord implements IdentityInterface
 
     /**
      * @inheritdoc
+     * @param string $authKey
      */
-    public function getAuthKey()
+    public function validateAuthKey($authKey)
     {
-        //@TODO implement it
+        return $authKey == md5($this->email . $this->passwordHash);
     }
 
     /**
      * @inheritdoc
+     * @return string|void
      */
-    public function validateAuthKey($authKey)
+    public function getAuthKey()
     {
-        //@TODO implement it
+        return md5($this->email . $this->passwordHash);
     }
 
     /**

@@ -17,8 +17,16 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
+    'Find' => '',
+    'Find projects' => '',
+    'Page not found' => '',
+    'Search Result' => '',
+    'Subscribe' => '',
+    'Unsubscribe' => '',
     'Create' => 'Створити',
     'Home' => 'Головна',
+    'Login' => 'Вхід',
+    'Logout ({email})' => 'Вихід ({email})',
     'N/A' => 'Не вказано',
     'News List' => 'Новини',
     'No' => 'Ні',

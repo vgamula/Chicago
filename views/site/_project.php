@@ -8,6 +8,11 @@ use yii\helpers\Html;
 <div class="col-lg-4 table-bordered">
     <h2><?= $model->title ?></h2>
 
+    <div>
+        <?php foreach($model->topics as $topic): ?>
+            <span class="label label-success"><?= $topic->title ?></span>
+        <?php endforeach ?>
+    </div>
     <p><?= $model->shortDescription ?></p>
 
     <p>

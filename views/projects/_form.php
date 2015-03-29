@@ -25,7 +25,7 @@ use app\models\Topic;
         <?= $form->field($model, 'alias')->textInput(['maxlength' => true]) ?>
     <?php endif; ?>
 
-    <?= $form->field($model, 'projectTopics')->checkboxList(ArrayHelper::map(Topic::find()->all(), 'id', 'title'), ['multiple' => true]) ?>
+    <?= $form->field($model, 'projectTopics')->checkboxList(Topic::getDropDownArray('id', 'title'), ['multiple' => true]) ?>
 
     <?= $form->field($model, 'isPublished')->dropDownList(Helper::YesNoList()) ?>
 

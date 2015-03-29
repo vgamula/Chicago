@@ -2,6 +2,7 @@
 
 namespace app\models;
 
+use nullref\useful\DropDownTrait;
 use Yii;
 
 /**
@@ -12,6 +13,7 @@ use Yii;
  */
 class Topic extends \yii\db\ActiveRecord
 {
+    use DropDownTrait;
     /**
      * @inheritdoc
      */

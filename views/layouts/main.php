@@ -36,15 +36,18 @@ AppAsset::register($this);
         ['label' => Yii::t('app', 'Home'), 'url' => ['/site/index']],
     ];
 
-    $items[]=['label' => Yii::t('app', 'Projects'), 'url' => ['/projects/index']];
-    $items[]=['label' => Yii::t('app', 'Users'), 'url' => ['/users/index']];
-    $items[]=['label' => Yii::t('app', 'Topics'), 'url' => ['/topics/index']];
-
-    $items[] = Yii::$app->user->isGuest ?
-        ['label' => 'Login', 'url' => ['/site/login']] :
-        ['label' => 'Logout (' . Yii::$app->user->identity->fullName . ')',
+    if (Yii::$app->user->isGuest) {
+        $items[] = ['label' => Yii::t('app', 'Login'), 'url' => ['/site/login']];
+    } else {
+        if (Yii::$app->user->identity->role == \app\models\User::ROLE_ADMIN) {
+            $items[] = ['label' => Yii::t('app', 'Projects'), 'url' => ['/projects/index']];
+            $items[] = ['label' => Yii::t('app', 'Users'), 'url' => ['/users/index']];
+            $items[] = ['label' => Yii::t('app', 'Topics'), 'url' => ['/topics/index']];
+        }
+        $items[] = ['label' => Yii::t('app', 'Logout ({email})', ['email' => Yii::$app->user->identity->fullName]),
             'url' => ['/site/logout'],
             'linkOptions' => ['data-method' => 'post']];
+    }
     echo Nav::widget([
         'options' => ['class' => 'navbar-nav navbar-right'],
         'items' => $items,
