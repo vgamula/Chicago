@@ -7,6 +7,9 @@ use yii\widgets\DetailView;
 /* @var $model app\models\News */
 
 $this->title = $model->title;
+
+$this->params['breadcrumbs'][] = ['label' => Yii::t('project', 'Projects'), 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => $model->project->title, 'url' => ['view', 'id' => $model->projectId]]; //@todo
 $this->params['breadcrumbs'][] = ['label' => Yii::t('news', 'News'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
@@ -17,8 +20,9 @@ $this->params['breadcrumbs'][] = $this->title;
     <p>
         <?php if (!$model->isSent): ?>
             <?= Html::a(Yii::t('news', 'Send'), ['send', 'id' => $model->id], ['class' => 'btn btn-info']) ?>
+        <?php else: ?>
+            <?= Html::a(Yii::t('news', 'Update'), ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
         <?php endif ?>
-        <?= Html::a(Yii::t('news', 'Update'), ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
         <?= Html::a(Yii::t('news', 'Delete'), ['delete', 'id' => $model->id], [
             'class' => 'btn btn-danger',
             'data' => [

@@ -28,22 +28,6 @@ class NewsController extends Controller
     }
 
     /**
-     * Lists all News models.
-     * @param $projectId
-     * @return string
-     */
-    public function actionIndex($projectId)
-    {
-        $dataProvider = new ActiveDataProvider([
-            'query' => News::find(['projectId' => $projectId]),
-        ]);
-
-        return $this->render('index', [
-            'dataProvider' => $dataProvider,
-        ]);
-    }
-
-    /**
      * Creates a new News model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @param $projectId
@@ -75,6 +59,11 @@ class NewsController extends Controller
         ]);
     }
 
+    /**
+     * @param $id
+     * @return \yii\web\Response
+     * @throws NotFoundHttpException
+     */
     public function actionSend($id)
     {
         $model = $this->findModel($id);
@@ -109,9 +98,10 @@ class NewsController extends Controller
      */
     public function actionDelete($id)
     {
-        $this->findModel($id)->delete();
+        $model = $this->findModel($id);
+        $model->delete();
 
-        return $this->redirect(['index']);
+        return $this->redirect(['/projects/view', 'id' => $model->projectId]);
     }
 
     /**
