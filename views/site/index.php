@@ -1,7 +1,7 @@
 <?php
 /* @var $this yii\web\View */
 /* @var $dataProvider \yii\data\ActiveDataProvider */
-$this->title = 'My Yii Application';
+$this->title = Yii::$app->name;
 ?>
 <div class="site-index">
 
