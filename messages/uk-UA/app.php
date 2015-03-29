@@ -17,7 +17,11 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
+    'Change E-mail' => '',
+    'Change Password' => '',
+    'Data was successfully updated' => '',
     'Select...' => '',
+    'Settings' => '',
     'Create' => 'Створити',
     'Find' => 'Шукати',
     'Find projects' => 'Пошук проектів',
