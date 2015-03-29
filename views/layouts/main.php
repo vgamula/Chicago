@@ -34,8 +34,6 @@ AppAsset::register($this);
     ]);
     $items = [
         ['label' => Yii::t('app', 'Home'), 'url' => ['/site/index']],
-        ['label' => Yii::t('app', 'About'), 'url' => ['/site/about']],
-        ['label' => Yii::t('app', 'Contact'), 'url' => ['/site/contact']],
     ];
 
     $items[]=['label' => Yii::t('app', 'Projects'), 'url' => ['/projects/index']];
