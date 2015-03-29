@@ -76,36 +76,6 @@ class Project extends ActiveRecord
         ]);
     }
 
-    public function afterSave($insert, $changedAttributes)
-    {
-/*        $oldTopics = [];
-        foreach ($this->projectTopics as $topic) {
-            $oldTopics[$topic->topicId] = $topic;
-        }
-
-        $newTopics = [];
-        foreach ($this->topics as $topicId) {
-            $newTopics[$topicId] = new ProjectTopic(['projectId' => $this->id, 'topicId' => $topicId]);
-        }*/
-        /** @var ProjectTopic[] $removed */
-      //  $removed = array_diff_key($oldTopics, $newTopics);
-        /** @var ProjectTopic[] $added */
-       /* $added = array_diff_key($newTopics, $oldTopics);
-        foreach ($added as $item) {
-            $item->link('project', $this);
-        }
-        foreach ($removed as $item) {
-            $item->delete();
-        }*/
-
-        parent::afterSave($insert, $changedAttributes);
-    }
-
-    public function afterFind()
-    {
-        parent::afterFind();
-    }
-
     /**
      * @inheritdoc
      */

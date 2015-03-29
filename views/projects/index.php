@@ -30,7 +30,15 @@ $this->params['breadcrumbs'][] = $this->title;
                 }
             ],
             'isPublished:boolean',
-            ['class' => 'yii\grid\ActionColumn'],
+            [
+                'class' => 'yii\grid\ActionColumn',
+                'template' => '{view} {update} {delete} {add}',
+                'buttons' => [
+                    'add' => function ($url, $model, $key) {
+                        return Html::a('<span class="glyphicon glyphicon-plus"></span>', ['/news/create', 'projectId' => $model->id]);
+                    }
+                ],
+            ],
         ],
     ]); ?>
 

@@ -44,14 +44,4 @@ class ProjectTopic extends \yii\db\ActiveRecord
             'topicId' => Yii::t('topic', 'Topic ID'),
         ];
     }
-
-    public function getProject()
-    {
-        return $this->hasOne(Project::className(), ['id' => 'projectId']);
-    }
-
-    public function getTopic()
-    {
-        return $this->hasOne(Project::className(), ['id' => 'topicId']);
-    }
 }
