@@ -10,6 +10,9 @@ return [
         'rating' => 0,
         'createdAt' => 1427555388,
         'updatedAt' => 1427555388,
+        'countryId' => 2,
+        'regionId' => 1502709,
+        'cityId' => 6676,
     ],
     [
         'title' => 'Допомога житлом вихідцям з зони АТО',
@@ -20,6 +23,9 @@ return [
         'rating' => 0,
         'createdAt' => 1427555388,
         'updatedAt' => 1427555388,
+        'countryId' => 2,
+        'regionId' => 1501549,
+        'cityId' => 1501730,
     ],
     [
         'title' => 'Саджаня дерев в хмельницькому',
@@ -30,5 +36,8 @@ return [
         'rating' => 0,
         'createdAt' => 1427555388,
         'updatedAt' => 1427555388,
+        'countryId' => 2,
+        'regionId' => 1513133,
+        'cityId' => 2917,
     ],
 ];
