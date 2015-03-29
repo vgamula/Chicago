@@ -28,6 +28,7 @@ class NewsController extends Controller
 
     /**
      * Lists all News models.
+     * @param $projectId
      * @return string
      */
     public function actionIndex($projectId)
@@ -42,18 +43,6 @@ class NewsController extends Controller
     }
 
     /**
-     * Displays a single News model.
-     * @param integer $id
-     * @return mixed
-     */
-    public function actionView($id)
-    {
-        return $this->render('view', [
-            'model' => $this->findModel($id),
-        ]);
-    }
-
-    /**
      * Creates a new News model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @param $projectId
@@ -64,7 +53,7 @@ class NewsController extends Controller
         $model = new News(['projectId' => $projectId]);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+            return $this->redirect(['/projects/views', 'id' => $projectId]);
         } else {
             return $this->render('create', [
                 'model' => $model,
@@ -83,7 +72,7 @@ class NewsController extends Controller
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+            return $this->redirect(['/projects/views', 'id' => $model->projectId]);
         } else {
             return $this->render('update', [
                 'model' => $model,

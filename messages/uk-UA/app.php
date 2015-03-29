@@ -17,16 +17,16 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
-    'About' => '',
-    'Contact' => '',
-    'Create' => '',
-    'Home' => '',
-    'N/A' => '',
-    'News' => '',
-    'No' => '',
-    'Projects' => '',
-    'Topics' => '',
-    'Update' => '',
-    'Users' => '',
-    'Yes' => '',
+    'About' => 'Про проект',
+    'Contact' => 'Контакт',
+    'Create' => 'Створити',
+    'Home' => 'Головна',
+    'N/A' => 'Не вказано',
+    'News' => 'Новина',
+    'No' => 'Ні',
+    'Projects' => 'Проекти',
+    'Topics' => 'Тематики',
+    'Update' => 'Оновити',
+    'Users' => 'Користувачі',
+    'Yes' => 'Так',
 ];
