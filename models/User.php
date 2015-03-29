@@ -59,8 +59,16 @@ class User extends ActiveRecord implements IdentityInterface
             [['password', 'passwordConfirm'], 'required', 'on' => static::SCENARIO_CREATE],
             [['email', 'passwordHash', 'createdAt', 'updatedAt'], 'required'],
             [['isActive', 'role', 'passwordResetExpire', 'createdAt', 'updatedAt', 'emailConfirmed'], 'integer'],
-            [['email', 'firstName', 'lastName', 'password', 'passwordHash', 'passwordResetToken', 'emailConfirmToken'], 'string', 'max' => 255]
+            [['email', 'firstName', 'lastName', 'password', 'passwordHash', 'passwordResetToken', 'emailConfirmToken'], 'string', 'max' => 255],
+            ['role', 'preventChangingOwnRole'],
         ];
+    }
+
+    public function preventChangingOwnRole($attribute, $params)
+    {
+        if ($this->id === Yii::$app->user->id) {
+            $this->addError($attribute, Yii::t('project', 'You cannot change own role.'));
+        }
     }
 
     /**

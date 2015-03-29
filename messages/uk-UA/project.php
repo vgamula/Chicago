@@ -36,4 +36,5 @@ return [
     'Updated At' => 'Дата оновлення: ',
     'View Project' => 'Переглянути проект',
     'View on site' => 'Переглянути на сайті',
+    'You cannot change own role.' => 'Ви не можете змінити свою роль.',
 ];
