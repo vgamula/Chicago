@@ -17,8 +17,8 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
-    'City ID' => '',
-    'Country ID' => '',
-    'Region ID' => '',
-    'Title' => '',
+    'City ID' => 'Місто',
+    'Country ID' => 'Країна',
+    'Region ID' => 'Регіон',
+    'Title' => 'Назва',
 ];

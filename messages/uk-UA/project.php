@@ -17,9 +17,9 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
-    'City' => '',
-    'Country' => '',
-    'Region' => '',
+    'City' => 'Місто',
+    'Country' => 'Країна',
+    'Region' => 'Область',
     'Add News' => 'Додати новину',
     'Alias' => 'Псевдонім',
     'Are you sure you want to delete this item?' => 'Ви дійсьно хочете видалити цей запис?',
