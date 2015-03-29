@@ -1,4 +1,6 @@
 <?php
+use yii\helpers\Html;
+
 /** @var $this \yii\web\View */
 /** @var $model \app\models\Project */
 $this->title = $model->title;
@@ -9,6 +11,13 @@ $this->title = $model->title;
         <?= $model->description ?>
     </div>
     <div>
+        <?php if (!Yii::$app->user->isGuest): ?>
+            <?php if (!$model->hasSubscriber(Yii::$app->user->identity)): ?>
+                <?= Html::a(Yii::t('app', 'Subscribe'), ['/site/subscribe', 'id' => $model->id], ['class' => 'btn btn-success']) ?>
+            <?php else: ?>
+                <?= Html::a(Yii::t('app', 'Unsubscribe'), ['/site/unsubscribe', 'id' => $model->id], ['class' => 'btn btn-danger']) ?>
+            <?php endif ?>
+        <?php endif ?>
     </div>
     <div class="news">
         <h2><?= Yii::t('app', 'News List') ?></h2>

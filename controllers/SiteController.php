@@ -3,6 +3,7 @@
 namespace app\controllers;
 
 use app\models\Project;
+use app\models\ProjectUser;
 use Yii;
 use yii\data\ActiveDataProvider;
 use yii\filters\AccessControl;
@@ -10,6 +11,8 @@ use yii\web\Controller;
 use yii\filters\VerbFilter;
 use app\models\LoginForm;
 use app\models\ContactForm;
+use yii\web\NotFoundHttpException;
+use yii\web\User;
 
 class SiteController extends Controller
 {
@@ -47,6 +50,49 @@ class SiteController extends Controller
                 'fixedVerifyCode' => YII_ENV_TEST ? 'testme' : null,
             ],
         ];
+    }
+
+    /**
+     * Subscribe current user to project by id
+     * @param $id
+     * @return \yii\web\Response
+     * @throws NotFoundHttpException
+     */
+    public function actionSubscribe($id)
+    {
+        /** @var Project $project */
+        $project = Project::findOne($id);
+        /** @var User $user */
+        $user = Yii::$app->user->identity;
+        if (!isset($project) || ProjectUser::find(['projectId' => $project->id, 'userId' => $user->id])->exists()) {
+            throw new NotFoundHttpException();
+        }
+        $relation = new ProjectUser(['projectId' => $project->id, 'userId' => $user->id]);
+        $relation->save(false);
+
+        return $this->redirect(['/site/view', 'slug' => $project->alias]);
+    }
+
+    /**
+     * Unsubscribe current user from project by id
+     * @param $id
+     * @return \yii\web\Response
+     * @throws NotFoundHttpException
+     */
+    public function actionUnsubscribe($id)
+    {
+        /** @var Project $project */
+        $project = Project::findOne($id);
+        /** @var User $user */
+        $user = Yii::$app->user->identity;
+        /** @var ProjectUser $relation */
+        $relation = ProjectUser::findOne(['projectId' => $project->id, 'userId' => $user->id]);
+        if (!isset($project) || !isset($relation)) {
+            throw new NotFoundHttpException();
+        }
+        $relation->delete();
+
+        return $this->redirect(['/site/view', 'slug' => $project->alias]);
     }
 
     public function actionIndex()
