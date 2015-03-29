@@ -21,9 +21,10 @@ apt-get -y install php5 libapache2-mod-php5 php5-mysql sendmail
 #install composer
 curl -sS https://getcomposer.org/installer | php
 mv composer.phar /usr/local/bin/composer
+composer global require "fxp/composer-asset-plugin:1.0.0"
 
 #install dependencies
-cd /www/Chicago && composer install
+cd /www/Chicago && composer install --prefer-dist
 cd /www/Chicago && cp .env.example .env
 
 # setup apache2 configuration
