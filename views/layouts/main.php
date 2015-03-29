@@ -37,6 +37,7 @@ AppAsset::register($this);
     ];
 
     if (Yii::$app->user->isGuest) {
+        $items[] = ['label' => Yii::t('app', 'Registration'), 'url' => ['/site/registration']];
         $items[] = ['label' => Yii::t('app', 'Login'), 'url' => ['/site/login']];
     } else {
         if (Yii::$app->user->identity->role == \app\models\User::ROLE_ADMIN) {

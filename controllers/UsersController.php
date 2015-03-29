@@ -7,7 +7,9 @@ use app\models\User;
 use app\models\UserSearch;
 use yii\filters\AccessControl;
 use yii\filters\AccessRule;
+use yii\web\BadRequestHttpException;
 use yii\web\Controller;
+use yii\web\ForbiddenHttpException;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
@@ -102,13 +104,17 @@ class UsersController extends Controller
     }
 
     /**
-     * Deletes an existing User model.
-     * If deletion is successful, the browser will be redirected to the 'index' page.
-     * @param integer $id
-     * @return mixed
+     * @param $id
+     * @return \yii\web\Response
+     * @throws ForbiddenHttpException
+     * @throws NotFoundHttpException
+     * @throws \Exception
      */
     public function actionDelete($id)
     {
+        if ($id == Yii::$app->user->id) {
+            throw new ForbiddenHttpException(Yii::t('app', 'Denied'));
+        }
         $this->findModel($id)->delete();
 
         return $this->redirect(['index']);
