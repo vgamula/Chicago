@@ -17,15 +17,17 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
-    'Are you sure you want to delete this item?' => 'Ви дійсьно хочете видалити цей запис?',
+    'Delete' => 'Видалити',
+    'Send' => 'Відправити',
     'Create' => 'Створити',
     'Create News' => 'Створити новину',
     'Created At' => 'Дата створення: ',
-    'Delete' => 'Видалити',
     'Description' => 'Опис',
     'ID' => 'ID',
+    'Is Sent' => 'Відправлено',
     'News' => 'Новина',
     'Project ID' => 'ID проекту',
+    'Send immediately' => 'Відправити одразу',
     'Title' => 'Заголовок',
     'Update' => 'Оновити',
     'Update {modelClass}: ' => 'Оновити {modelClass}: ',

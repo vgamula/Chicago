@@ -6,8 +6,10 @@ use app\components\ProjectQuery;
 use Yii;
 use yii\behaviors\SluggableBehavior;
 use yii\behaviors\TimestampBehavior;
+use yii\data\ActiveDataProvider;
 use yii\db\ActiveRecord;
 use voskobovich\behaviors\ManyToManyBehavior;
+use yii\helpers\HtmlPurifier;
 
 /**
  * This is the model class for table "{{%projects}}".
@@ -22,7 +24,9 @@ use voskobovich\behaviors\ManyToManyBehavior;
  * @property integer $createdAt
  * @property integer $updatedAt
  *
- * @property ProjectTopic[] $projectTopics
+ * @property News[] $news
+ * @property Topic[] $topics
+ * @property Topic[] $projectTopics
  */
 class Project extends ActiveRecord
 {
@@ -51,6 +55,9 @@ class Project extends ActiveRecord
             [['title', 'alias'], 'string', 'max' => 255],
             [['description'], 'string'],
             [['isPublished', 'createdAt', 'updatedAt'], 'integer'],
+            [['description', 'shortDescription'], function ($attribute) {
+                $this->$attribute = HtmlPurifier::process($this->$attribute);
+            }],
         ];
     }
 
@@ -118,5 +125,19 @@ class Project extends ActiveRecord
     {
         //@TODO implements it
         return [];
+    }
+
+    /**
+     * Get related news
+     * @return \yii\db\ActiveQuery
+     */
+    public function getNews()
+    {
+        return $this->hasMany(News::className(), ['projectId' => 'id']);
+    }
+
+    public function getNewsProvider()
+    {
+        return new ActiveDataProvider(['query' => $this->getNews()]);
     }
 }

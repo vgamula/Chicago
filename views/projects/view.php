@@ -38,4 +38,21 @@ $this->params['breadcrumbs'][] = $this->title;
         ],
     ]) ?>
 
+    <div>
+        <h2><?= Yii::t('app', 'News List') ?></h2>
+        <?= \yii\grid\GridView::widget([
+
+            'dataProvider' => $model->getNewsProvider(),
+            'columns' => [
+                ['class' => \yii\grid\SerialColumn::className()],
+                'title',
+                'isSent:boolean',
+                [
+                    'class' => \yii\grid\ActionColumn::className(),
+                    'controller' => 'news',
+                ],
+            ],
+        ]) ?>
+    </div>
+
 </div>

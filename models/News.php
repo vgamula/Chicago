@@ -5,6 +5,7 @@ namespace app\models;
 use Yii;
 use yii\behaviors\TimestampBehavior;
 use yii\db\ActiveRecord;
+use yii\helpers\HtmlPurifier;
 
 /**
  * This is the model class for table "{{%news}}".
@@ -37,8 +38,10 @@ class News extends ActiveRecord
         return [
             [['title', 'isSent', 'projectId', 'description'], 'required'],
             [['isSent', 'projectId', 'createdAt', 'updatedAt'], 'integer'],
-            [['isSent'], 'default', 'value' => true],
-            [['title'], 'string', 'max' => 255]
+            [['title'], 'string', 'max' => 255],
+            [['description'], function ($attribute) {
+                $this->$attribute = HtmlPurifier::process($this->$attribute);
+            }],
         ];
     }
 
@@ -59,14 +62,27 @@ class News extends ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => Yii::t('topic', 'ID'),
-            'title' => Yii::t('topic', 'Title'),
-            'description' => Yii::t('topic', 'Description'),
-            'isSent' => Yii::t('topic', 'Is Sent'),
-            'projectId' => Yii::t('topic', 'Project ID'),
-            'createdAt' => Yii::t('topic', 'Created At'),
-            'updatedAt' => Yii::t('topic', 'Updated At'),
+            'id' => Yii::t('news', 'ID'),
+            'title' => Yii::t('news', 'Title'),
+            'description' => Yii::t('news', 'Description'),
+            'isSent' => Yii::t('news', 'Is Sent'),
+            'projectId' => Yii::t('news', 'Project ID'),
+            'createdAt' => Yii::t('news', 'Created At'),
+            'updatedAt' => Yii::t('news', 'Updated At'),
         ];
+    }
+
+    /**
+     * Sent messages if new record
+     * @param bool $insert
+     * @param array $changedAttributes
+     */
+    public function afterSave($insert, $changedAttributes)
+    {
+        parent::afterSave($insert, $changedAttributes);
+        if ($insert && $this->isSent) {
+            $this->sendEmail();
+        }
     }
 
     /**
@@ -78,6 +94,9 @@ class News extends ActiveRecord
         return $this->hasOne(Project::tableName(), ['id' => 'projectId']);
     }
 
+    /**
+     * Send e-mail to project subscribers
+     */
     public function sendEmail()
     {
         //@TODO implement it

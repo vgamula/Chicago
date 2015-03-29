@@ -82,7 +82,6 @@ class ProjectsController extends Controller
     {
         $model = $this->findModel($id);
 
-        $topics = Yii::$app->request->post('topics');
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         } else {

@@ -5,7 +5,7 @@ use yii\helpers\Html;
 /** @var $model \app\models\Project */
 ?>
 
-<div class="col-lg-4">
+<div class="col-lg-4 table-bordered">
     <h2><?= $model->title ?></h2>
 
     <p><?= $model->shortDescription ?></p>
