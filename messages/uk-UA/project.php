@@ -28,8 +28,6 @@ return [
     'Description' => 'Опис',
     'ID' => 'ID',
     'Is Published' => 'Опубліковано',
-    'Project ID' => 'ID',
-    'Project Topics' => 'Тематики проекту',
     'Projects' => 'Проекти',
     'Title' => 'Заголовок',
     'Topics' => 'Тематики',
@@ -40,6 +38,5 @@ return [
     'View on site' => 'Переглянути на сайті',
     'You cannot change own role.' => 'Ви не можете змінити свою роль.',
     'View project' => 'Переглянути проект',
-    'Alias' => 'Псевдонім'
-    'You cannot change own role.' => 'Ви не можете змінити свою роль.',
+    'Alias' => 'Псевдонім',
 ];
